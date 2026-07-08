@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+
+  --color-ink: #060a0d;
+  --color-bg: #0a0f14;
+  --color-bg-alt: #0d1420;
+  --color-surface: #101923;
+  --color-surface-2: #131e29;
+  --color-border: #1d2933;
+  --color-border-soft: #16212b;
+  --color-text: #f3f7f7;
+  --color-text-muted: #8ea0ab;
+  --color-text-dim: #5b6b76;
+  --color-mint: #27ffbf;
+  --color-mint-dim: #1abd8e;
+  --color-mint-deep: #0c3a30;
+  --color-violet: #7c8cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+/* Font utilities — replaces Tailwind v4's auto-generated font-display /
+   font-mono classes, since this project uses the v3 config-based setup. */
+.font-display {
+  font-family: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif;
+}
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--color-mint);
+  color: #06110d;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-mint-dim); }
+
+.container-px {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-px { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+@media (min-width: 1280px) {
+  .container-px { padding-left: 6rem; padding-right: 6rem; }
+}
+
+.text-gradient {
+  background: linear-gradient(92deg, #27ffbf 0%, #8affe0 45%, #27ffbf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Full-bleed section photography with a consistent dark brand overlay,
+   used instead of flat color so the page never reads as an empty void. */
+.photo-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.photo-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(6,10,13,0.88) 0%, rgba(6,10,13,0.94) 55%, var(--color-bg) 100%);
+}
+.photo-section.photo-section--mid::before {
+  background:
+    linear-gradient(90deg, rgba(6,10,13,0.96) 0%, rgba(6,10,13,0.72) 45%, rgba(6,10,13,0.55) 100%);
+}
+.photo-section > * { position: relative; z-index: 1; }
+
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+  50% { transform: translate3d(0,-22px,0) rotate(4deg); }
+}
+@keyframes float-slower {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+  50% { transform: translate3d(14px,18px,0) rotate(-5deg); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.animate-float-slower { animation: float-slower 9s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 26s linear infinite; }
+.animate-pulse-glow { animation: pulse-glow 2.6s ease-in-out infinite; }
+.animate-marquee { animation: marquee 28s linear infinite; }
+
+/* ------------------------------------------------------------------ */
+/* Neumorphic surface system — soft dual-shadow raised / inset panels */
+/* used throughout cards, buttons, and wells across the site.         */
+/* ------------------------------------------------------------------ */
+
+.neu-raised {
+  background: linear-gradient(155deg, var(--color-surface-2) 0%, var(--color-surface) 100%);
+  border: 1px solid var(--color-border-soft);
+  box-shadow:
+    10px 10px 24px rgba(0, 0, 0, 0.45),
+    -8px -8px 20px rgba(255, 255, 255, 0.025),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.neu-raised-sm {
+  background: linear-gradient(155deg, var(--color-surface-2) 0%, var(--color-surface) 100%);
+  border: 1px solid var(--color-border-soft);
+  box-shadow:
+    5px 5px 12px rgba(0, 0, 0, 0.45),
+    -4px -4px 10px rgba(255, 255, 255, 0.025);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.neu-raised-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(39, 255, 191, 0.28);
+  box-shadow:
+    14px 14px 30px rgba(0, 0, 0, 0.5),
+    -10px -10px 24px rgba(255, 255, 255, 0.03),
+    0 0 32px rgba(39, 255, 191, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.neu-pressable {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.neu-pressable:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.02);
+}
+
+.neu-inset {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-soft);
+  box-shadow:
+    inset 5px 5px 12px rgba(0, 0, 0, 0.5),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.02);
+}
+
+.neu-inset-deep {
+  background: var(--color-ink);
+  border: 1px solid var(--color-border-soft);
+  box-shadow:
+    inset 7px 7px 16px rgba(0, 0, 0, 0.6),
+    inset -5px -5px 14px rgba(255, 255, 255, 0.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neu-raised, .neu-raised-sm, .neu-raised-hover, .neu-pressable {
+    transition: none !important;
+  }
+  .neu-raised-hover:hover {
+    transform: none;
+  }
+}
+
+.btn-glow {
+  box-shadow: 0 0 0 0 rgba(39,255,191,0.5);
+  transition: box-shadow .3s ease, transform .2s ease, background .2s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 32px 2px rgba(39,255,191,0.35);
+  transform: translateY(-1px);
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Site-wide ambient background — rendered once via <SiteBackground /> */
+/* at the app root. A quiet particle wave field (drawn on canvas in    */
+/* SiteBackground.jsx) that gently tilts in 3D toward the cursor.      */
+/* Colors lean blue/cyan rather than the brand mint-green, kept at     */
+/* low opacity so it never disturbs foreground content — turn the     */
+/* --site-bg-opacity variable down further if it ever feels busy.      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --site-bg-opacity: 0.6;
+}
+
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-bg);
+  opacity: var(--site-bg-opacity);
+}
+
+.site-bg__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 18% 12%, rgba(90,140,255,0.07) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 55% at 85% 90%, rgba(60,110,220,0.06) 0%, transparent 62%);
+}
+
+.site-bg__wave-wrap {
+  position: absolute;
+  inset: -6%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.site-bg__wave-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.site-bg__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 640px) {
+  .site-bg {
+    opacity: calc(var(--site-bg-opacity) * 0.7);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Section rhythm — a soft glowing seam between sections instead of a */
+/* hard line, plus gentle alternating tint so long stretches of the   */
+/* page don't read as one undifferentiated dark void.                 */
+/* ------------------------------------------------------------------ */
+
+.section-divider {
+  position: relative;
+  height: 1px;
+  margin: 0 auto;
+  max-width: 1100px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border-soft) 15%,
+    rgba(39,255,191,0.35) 50%,
+    var(--color-border-soft) 85%,
+    transparent 100%
+  );
+}
+
+.section-tint {
+  position: relative;
+  isolation: isolate;
+}
+.section-tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, transparent 0%, rgba(16,25,35,0.55) 15%, rgba(16,25,35,0.55) 85%, transparent 100%);
+}
