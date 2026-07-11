@@ -109,7 +109,7 @@ export default function Header() {
               to="/product"
               className="btn-mint"
             >
-              Let's Talk
+              Prys_v2
             </Link>
           </div>
 
@@ -160,7 +160,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="btn-mint w-full justify-center"
             >
-              Let's Talk
+              Prys_v2
             </Link>
           </div>
         </nav>
