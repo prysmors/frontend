@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, TrendingUp, Activity, Cpu, ArrowUpRight } from "lucide-react";
-import IsometricCircuit from "./graphics/IsometricCircuit";
+import { heroVideo } from "../assets";
 
 export default function DemoModal({ open, onClose }) {
   const closeBtnRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
@@ -19,6 +20,15 @@ export default function DemoModal({ open, onClose }) {
       document.body.style.overflow = "";
     };
   }, [open, onClose]);
+
+  useEffect(() => {
+    if (open && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    } else if (!open && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -61,23 +71,30 @@ export default function DemoModal({ open, onClose }) {
               <X size={18} aria-hidden="true" />
             </button>
 
-            {/* Left: animated 3D isometric circuit scene */}
-            <div className="relative flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)] p-8 sm:p-10">
+            {/* Left: hero video (replaces the old isometric circuit graph) */}
+            <div className="relative flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)] p-0">
               <div className="grid-overlay absolute inset-0 opacity-20" aria-hidden="true" />
+              {/* edge blend overlays so the video fades into the panel background */}
+              <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
+                <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#050a0d] to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050a0d] to-transparent" />
+                <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#050a0d] to-transparent" />
+                <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#050a0d] to-transparent" />
+              </div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[320px] w-full max-w-md sm:h-[380px]"
-                style={{ perspective: "1200px" }}
+                className="relative h-[360px] w-full sm:h-[460px]"
               >
-                <motion.div
-                  className="h-full w-full"
-                  animate={{ rotateY: [0, 8, -8, 0], rotateX: [0, -4, 4, 0] }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <IsometricCircuit className="h-full w-full drop-shadow-[0_0_70px_rgba(255,176,32,0.15)]" id="modalGraph" variant="large" />
-                </motion.div>
+                <video
+                  ref={videoRef}
+                  src={heroVideo}
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-contain border-none outline-none"
+                />
               </motion.div>
             </div>
 

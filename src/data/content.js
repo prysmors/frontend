@@ -1,3 +1,5 @@
+import { marcusAvatar, priyaAvatar, elenaAvatar } from "../assets";
+
 export const COMPANY = {
   name: "Prysmors",
   legalName: "Prysmors LLC",
@@ -120,7 +122,7 @@ export const TESTIMONIALS = [
     name: "Elena Voss",
     role: "Chief Strategy Officer",
     company: "Northbridge Financial",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80",
+    avatar: elenaAvatar,
   },
   {
     quote:
@@ -128,7 +130,7 @@ export const TESTIMONIALS = [
     name: "Marcus Idehen",
     role: "VP Operations",
     company: "Kestrel Manufacturing",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=96&q=80",
+    avatar: marcusAvatar,
   },
   {
     quote:
@@ -136,7 +138,7 @@ export const TESTIMONIALS = [
     name: "Priya Anand",
     role: "CEO",
     company: "Solace Health Systems",
-    avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=96&q=80",
+    avatar: priyaAvatar,
   },
 ];
 

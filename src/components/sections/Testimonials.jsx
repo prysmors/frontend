@@ -35,8 +35,18 @@ export default function Testimonials() {
 
             <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="neu-inset flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold text-[var(--color-mint)]">
-                  {t.name.split(" ").map((n) => n[0]).join("")}
+                <div className="neu-inset flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full">
+                  {t.avatar ? (
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-display text-sm font-bold text-[var(--color-mint)]">
+                      {t.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--color-text)]">{t.name}</p>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { COMPANY } from "../../data/content";
+import { contactIllustration } from "../../assets";
 
 const INPUT_CLASS =
   "w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] px-4 py-3 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] outline-none transition-all focus:border-[var(--color-mint)] focus:ring-2 focus:ring-[var(--color-mint)]/15";
@@ -73,8 +74,8 @@ export default function Contact() {
             {/* Map placeholder */}
             <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]" style={{ height: 200 }}>
               <img
-                src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=60"
-                alt="San Francisco skyline — Prysmors headquarters location"
+                src={contactIllustration}
+                alt="Prysmors contact illustration"
                 loading="lazy"
                 className="h-full w-full object-cover opacity-60"
               />

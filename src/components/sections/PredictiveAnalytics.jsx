@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { TrendingUp, ShieldAlert, Sparkles } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
+import { analyticsIllustration } from "../../assets";
 
 const STATS = [
   { icon: TrendingUp, value: "94.6%", label: "Forecast Accuracy" },
@@ -88,12 +89,10 @@ export default function PredictiveAnalytics() {
               className="relative h-full overflow-hidden rounded-3xl border border-[var(--color-border)]"
             >
               <img
-                src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1100&q=80"
-                alt="Analyst studying a forward-looking data forecast on a large display"
+                src={analyticsIllustration}
+                alt="Prysmors predictive analytics visualization"
                 loading="lazy"
-                className="h-full w-full scale-105 object-cover"
-                width={1100}
-                height={1300}
+                className="h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/85 via-[var(--color-bg)]/10 to-transparent" />
 

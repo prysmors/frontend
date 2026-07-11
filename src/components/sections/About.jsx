@@ -1,6 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { COMPANY } from "../../data/content";
+import { aboutIllustration } from "../../assets";
 
 const POINTS = [
   "AI-native decision engine, not a retrofitted dashboard",
@@ -15,12 +16,10 @@ export default function About() {
         <Reveal y={30} className="relative order-2 lg:order-1">
           <div className="relative overflow-hidden rounded-3xl border border-[var(--color-border)]">
             <img
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80"
-              alt="Executive team reviewing enterprise analytics on a dark dashboard interface"
+              src={aboutIllustration}
+              alt="Prysmors about illustration"
               loading="lazy"
               className="h-[420px] w-full object-cover sm:h-[500px]"
-              width={1200}
-              height={1500}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-transparent to-transparent" />
           </div>

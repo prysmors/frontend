@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play, TrendingUp } from "lucide-react";
-import IsometricCircuit from "../graphics/IsometricCircuit";
 import DemoModal from "../DemoModal";
+import { heroGraphic } from "../../assets";
 
 export default function Hero() {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -184,9 +184,13 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Isometric decision-network illustration replaces the static KPI grid */}
-            <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-soft)] bg-[radial-gradient(ellipse_at_center,#0f1824_0%,#070c11_100%)] py-2">
-              <IsometricCircuit className="h-[210px] w-full max-w-[300px] sm:h-[240px]" id="heroGraph" />
+            {/* Hero graphic */}
+            <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-soft)] bg-[radial-gradient(ellipse_at_center,#0f1824_0%,#070c11_100%)] py-0">
+              <img
+                src={heroGraphic}
+                alt="Prysmors decision intelligence visualization"
+                className="h-[280px] w-full max-w-[380px] object-contain sm:h-[320px] sm:max-w-[440px]"
+              />
             </div>
 
             <p className="mt-3 text-center text-[11px] leading-relaxed text-[var(--color-text-dim)]">

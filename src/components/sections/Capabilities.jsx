@@ -1,23 +1,23 @@
-import {
-  BrainCircuit,
-  TrendingUp,
-  GitBranch,
-  Network,
-  LayoutDashboard,
-  PlugZap,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { CAPABILITIES } from "../../data/content";
+import {
+  decisionIntelligenceIcon,
+  predictiveAnalyticsCapIcon,
+  scenarioSimulationCapIcon,
+  knowledgeGraphIcon,
+  executiveIntelligenceIcon,
+  apiExtensibilityIcon,
+} from "../../assets";
 
-const ICONS = {
-  "brain-circuit": BrainCircuit,
-  "trending-up": TrendingUp,
-  "git-branch": GitBranch,
-  network: Network,
-  "layout-dashboard": LayoutDashboard,
-  "plug-zap": PlugZap,
-};
+const CAP_ICONS = [
+  decisionIntelligenceIcon,
+  predictiveAnalyticsCapIcon,
+  scenarioSimulationCapIcon,
+  knowledgeGraphIcon,
+  executiveIntelligenceIcon,
+  apiExtensibilityIcon,
+];
 
 export default function Capabilities() {
   return (
@@ -48,26 +48,27 @@ export default function Capabilities() {
         </div>
 
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-[var(--color-border-soft)] bg-[var(--color-border-soft)] sm:grid-cols-2 lg:grid-cols-3">
-          {CAPABILITIES.map((cap, i) => {
-            const Icon = ICONS[cap.icon];
-            return (
-              <Reveal key={cap.id} delay={(i % 3) * 0.08}>
-                <div className="group relative h-full bg-[var(--color-bg-alt)] p-8 transition-colors hover:bg-[var(--color-surface)]">
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-mint)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:border-[#27FFbf]/50">
-                      <Icon size={22} strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <span className="font-mono text-xs text-[var(--color-text-dim)]">{cap.id}</span>
-                  </div>
-                  <h3 className="mb-2.5 font-display text-lg font-bold text-[var(--color-text)]">
-                    {cap.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">{cap.desc}</p>
-                  <div className="mt-6 h-px w-8 bg-[var(--color-border)] transition-all duration-300 group-hover:w-14 group-hover:bg-[var(--color-mint)]" />
+          {CAPABILITIES.map((cap, i) => (
+            <Reveal key={cap.id} delay={(i % 3) * 0.08}>
+              <div className="group relative h-full bg-[var(--color-bg-alt)] p-8 transition-colors hover:bg-[var(--color-surface)]">
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:border-[#27FFbf]/50">
+                    <img
+                      src={CAP_ICONS[i]}
+                      alt={cap.title}
+                      className="h-9 w-9 object-contain"
+                    />
+                  </span>
+                  <span className="font-mono text-xs text-[var(--color-text-dim)]">{cap.id}</span>
                 </div>
-              </Reveal>
-            );
-          })}
+                <h3 className="mb-2.5 font-display text-lg font-bold text-[var(--color-text)]">
+                  {cap.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">{cap.desc}</p>
+                <div className="mt-6 h-px w-8 bg-[var(--color-border)] transition-all duration-300 group-hover:w-14 group-hover:bg-[var(--color-mint)]" />
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

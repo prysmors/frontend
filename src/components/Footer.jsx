@@ -1,5 +1,6 @@
-import { Zap, Twitter, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import { Twitter, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { NAV_LINKS, COMPANY } from "../data/content";
+import { logo } from "../assets";
 
 function scrollTo(href) {
   const el = document.querySelector(href);
@@ -18,13 +19,10 @@ export default function Footer() {
             <a
               href="#home"
               onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
-              className="mb-4 flex items-center gap-2.5 text-[var(--color-text)] no-underline"
+              className="mb-4 text-[var(--color-text)] no-underline"
               aria-label="Prysmors — back to top"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-mint)] text-[#06110d]">
-                <Zap size={17} strokeWidth={2.5} />
-              </div>
-              <span className="font-display text-lg font-bold tracking-tight">Prysmors</span>
+              <img src={logo} alt="Prysmors" className="h-14 w-auto" />
             </a>
             <p className="mb-6 text-sm leading-relaxed text-[var(--color-text-muted)]">
               Enterprise Decision Intelligence Platform — transforming data into

@@ -1,14 +1,20 @@
-import { Cpu, ShieldCheck, Zap, Users, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Reveal from "../../hooks/useReveal";
 import { WHY_US } from "../../data/content";
+import {
+  aiNativeArchitectureIcon,
+  enterpriseSecurityIcon,
+  nvidiaComputeIcon,
+  dedicatedImplementationIcon,
+} from "../../assets";
 
-const ICONS = {
-  cpu: Cpu,
-  "shield-check": ShieldCheck,
-  zap: Zap,
-  users: Users,
-};
+const WHY_US_ICONS = [
+  aiNativeArchitectureIcon,
+  enterpriseSecurityIcon,
+  nvidiaComputeIcon,
+  dedicatedImplementationIcon,
+];
 
 export default function WhyUs() {
   return (
@@ -61,9 +67,7 @@ export default function WhyUs() {
 
           {/* Right cards grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {WHY_US.map((item, i) => {
-              const Icon = ICONS[item.icon] || Zap;
-              return (
+            {WHY_US.map((item, i) => (
                 <Reveal key={item.id} delay={i * 0.08}>
                   <motion.div
                     whileHover={{ y: -4, scale: 1.02 }}
@@ -71,8 +75,12 @@ export default function WhyUs() {
                     className="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 p-6 backdrop-blur-sm transition-all hover:border-[var(--color-mint)]/30 hover:bg-[var(--color-surface)]"
                   >
                     <div className="mb-4 flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-mint)] transition-colors group-hover:border-[var(--color-mint)]/40">
-                        <Icon size={18} strokeWidth={1.75} />
+                      <span className="flex h-14 w-14 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] transition-colors group-hover:border-[var(--color-mint)]/40">
+                        <img
+                          src={WHY_US_ICONS[i]}
+                          alt={item.title}
+                          className="h-8 w-8 object-contain"
+                        />
                       </span>
                       <span className="font-mono text-xs text-[var(--color-text-dim)]">{item.id}</span>
                     </div>
@@ -82,8 +90,7 @@ export default function WhyUs() {
                     <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">{item.desc}</p>
                   </motion.div>
                 </Reveal>
-              );
-            })}
+              ))}
           </div>
         </div>
       </div>

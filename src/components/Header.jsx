@@ -1,19 +1,46 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import useActiveSection from "../hooks/useActiveSection";
+import { logo } from "../assets";
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""));
 
 function scrollTo(href) {
   const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+    window.history.pushState(null, "", href);
+  }
 }
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveSection(SECTION_IDS);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
+
+  const handleNav = (href) => (e) => {
+    e.preventDefault();
+    if (isHome) {
+      scrollTo(href);
+    } else {
+      navigate("/" + href);
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    if (isHome) {
+      scrollTo("#home");
+    } else {
+      navigate("/");
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -44,14 +71,11 @@ export default function Header() {
           {/* Logo */}
           <a
             href="#home"
-            onClick={(e) => { e.preventDefault(); scrollTo("#home"); setMenuOpen(false); }}
-            className="flex items-center gap-2.5 text-[var(--color-text)] no-underline"
+            onClick={handleLogoClick}
+            className="text-[var(--color-text)] no-underline"
             aria-label="Prysmors — back to top"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-mint)] text-[#06110d]">
-              <Zap size={17} strokeWidth={2.5} />
-            </div>
-            <span className="font-display text-lg font-bold tracking-tight">Prysmors</span>
+            <img src={logo} alt="Prysmors" className="h-14 w-auto" />
           </a>
 
           {/* Desktop nav */}
@@ -62,7 +86,7 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                  onClick={handleNav(link.href)}
                   className={`relative px-3.5 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                     isActive
                       ? "text-[var(--color-mint)]"
@@ -81,13 +105,12 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
+            <Link
+              to="/product"
               className="btn-mint"
             >
               Let's Talk
-            </a>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -116,7 +139,7 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); scrollTo(link.href); setMenuOpen(false); }}
+                onClick={(e) => { handleNav(link.href)(e); setMenuOpen(false); }}
                 className={`flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold transition-all duration-200 ${
                   isActive
                     ? "bg-[var(--color-mint-deep)] text-[var(--color-mint)]"
@@ -132,13 +155,13 @@ export default function Header() {
             );
           })}
           <div className="mt-6 px-4">
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollTo("#contact"); setMenuOpen(false); }}
+            <Link
+              to="/product"
+              onClick={() => setMenuOpen(false)}
               className="btn-mint w-full justify-center"
             >
               Let's Talk
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

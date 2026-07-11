@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import SiteBackground from "./components/SiteBackground";
 import Hero from "./components/sections/Hero";
@@ -15,12 +16,11 @@ import Contact from "./components/sections/Contact";
 import FinalCta from "./components/sections/FinalCta";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
+import ProductPage from "./components/ProductPage";
 
-export default function App() {
+function HomePage() {
   return (
-    <div className="min-h-screen" style={{ color: "var(--color-text)" }}>
-      <SiteBackground />
-      <Header />
+    <>
       <main>
         <Hero />
         <TrustBar />
@@ -56,8 +56,28 @@ export default function App() {
         <Contact />
       </main>
       <FinalCta />
-      <Footer />
-      <CookieConsent />
-    </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/product" element={<ProductPage />} />
+        <Route
+          path="*"
+          element={
+            <div className="min-h-screen" style={{ color: "var(--color-text)" }}>
+              <SiteBackground />
+              <Header />
+              <HomePage />
+              <Footer />
+              <CookieConsent />
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }

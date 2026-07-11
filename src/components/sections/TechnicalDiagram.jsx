@@ -1,15 +1,22 @@
 import { motion } from "framer-motion";
-import { Database, Cpu, TrendingUp, GitBranch, Send, ArrowRight } from "lucide-react";
+import { Cpu, ArrowRight } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { PIPELINE_STEPS } from "../../data/content";
+import {
+  dataIngestionIcon,
+  aiReasoningEngineIcon,
+  predictiveModelingIcon,
+  scenarioSimulationIcon,
+  executiveDeliveryIcon,
+} from "../../assets";
 
-const ICON_MAP = {
-  database: Database,
-  cpu: Cpu,
-  "trending-up": TrendingUp,
-  "git-branch": GitBranch,
-  send: Send,
-};
+const ARCH_ICONS = [
+  dataIngestionIcon,
+  aiReasoningEngineIcon,
+  predictiveModelingIcon,
+  scenarioSimulationIcon,
+  executiveDeliveryIcon,
+];
 
 export default function TechnicalDiagram() {
   return (
@@ -34,40 +41,41 @@ export default function TechnicalDiagram() {
           <div className="absolute left-0 right-0 top-[52px] hidden h-px bg-gradient-to-r from-transparent via-[var(--color-mint)]/30 to-transparent lg:block" aria-hidden="true" />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {PIPELINE_STEPS.map((step, i) => {
-              const Icon = ICON_MAP[step.icon] || Database;
-              return (
-                <Reveal key={step.title} delay={i * 0.08}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="group relative flex flex-col items-center text-center"
-                  >
-                    <div className="relative mb-5">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-mint)] shadow-[0_0_0_8px_var(--color-bg)] transition-all duration-300 group-hover:border-[var(--color-mint)]/50 group-hover:shadow-[0_0_24px_rgba(39,255,191,0.2)]">
-                        <Icon size={20} strokeWidth={1.75} />
-                      </div>
-                      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-mint)] font-mono text-[9px] font-bold text-[#06110d]">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    {i < PIPELINE_STEPS.length - 1 && (
-                      <ArrowRight
-                        size={14}
-                        className="absolute -right-4 top-[19px] hidden text-[var(--color-mint)]/40 lg:block"
-                        aria-hidden="true"
+            {PIPELINE_STEPS.map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="group relative flex flex-col items-center text-center"
+                >
+                  <div className="relative mb-5">
+                    <div className="flex h-[72px] w-[72px] items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_0_0_8px_var(--color-bg)] transition-all duration-300 group-hover:border-[var(--color-mint)]/50 group-hover:shadow-[0_0_24px_rgba(39,255,191,0.2)]">
+                      <img
+                        src={ARCH_ICONS[i]}
+                        alt={step.title}
+                        className="h-10 w-10 object-contain"
                       />
-                    )}
+                    </div>
+                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-mint)] font-mono text-[9px] font-bold text-[#06110d]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
 
-                    <h3 className="mb-2 font-display text-base font-bold text-[var(--color-text)]">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{step.desc}</p>
-                  </motion.div>
-                </Reveal>
-              );
-            })}
+                  {i < PIPELINE_STEPS.length - 1 && (
+                    <ArrowRight
+                      size={14}
+                      className="absolute -right-4 top-[19px] hidden text-[var(--color-mint)]/40 lg:block"
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  <h3 className="mb-2 font-display text-base font-bold text-[var(--color-text)]">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{step.desc}</p>
+                </motion.div>
+              </Reveal>
+            ))}
           </div>
         </div>
 
