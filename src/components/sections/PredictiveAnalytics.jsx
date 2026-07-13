@@ -92,12 +92,12 @@ export default function PredictiveAnalytics() {
                 src={analyticsIllustration}
                 alt="Prysmors predictive analytics visualization"
                 loading="lazy"
-                className="h-full w-full object-contain"
+                className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/85 via-[var(--color-bg)]/10 to-transparent" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[var(--color-bg)]/85 via-[var(--color-bg)]/10 to-transparent" />
 
               {/* single restrained data callout instead of a full synthetic chart */}
-              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-8">
+              <div className="absolute bottom-6 left-6 right-6 z-20 rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-8">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
                     Q3 Revenue Forecast

@@ -4,9 +4,9 @@ import { COMPANY } from "../../data/content";
 import { aboutIllustration } from "../../assets";
 
 const POINTS = [
-  "AI-native decision engine, not a retrofitted dashboard",
-  "Real-time predictive analytics across every business function",
-  "Built for executive teams across finance, healthcare, retail & gov.",
+  "AI-native decision intelligence built for modern enterprises",
+  "Predictive insights that help teams stay ahead of risks and opportunities",
+  "Designed for executive leaders across finance, healthcare, retail, manufacturing, and government",
 ];
 
 export default function About() {
@@ -39,20 +39,18 @@ export default function About() {
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             About Prysmors
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
-            Built to close the gap between{" "}
-            <span className="text-gradient">data and decisions.</span>
+          <h2 className="font-display text-4xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-5xl">
+            Built for{" "}
+            <span className="text-gradient">Better Business Decisions</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
-            Organizations run on fragmented reports and historical dashboards that explain the
-            past but rarely guide the future. Prysmors was founded to close that gap — combining
-            AI reasoning, predictive modeling and enterprise knowledge into a single decision
-            layer that sits above your existing systems.
+            Every organization generates valuable data, but turning that data into confident decisions remains one of the biggest challenges for modern enterprises. Teams often work with disconnected systems and historical reports that explain what has already happened but offer little guidance on what comes next.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[var(--color-text-muted)]">
-            Today, executive and operations teams across finance, manufacturing, healthcare,
-            retail and government use Prysmors as their intelligent decision layer for proactive
-            planning, strategic optimization and continuous business improvement.
+            Prysmors was created to change that. By combining AI-powered reasoning, predictive analytics, scenario modeling, and enterprise knowledge into a unified platform, Prysmors helps organizations move beyond reporting and toward intelligent, forward-looking decision-making.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-[var(--color-text-muted)]">
+            From executive boardrooms to operational teams, organizations across finance, manufacturing, healthcare, retail, and the public sector rely on Prysmors to uncover insights faster, anticipate change, reduce uncertainty, and make strategic decisions with confidence.
           </p>
 
           <ul className="mt-8 flex flex-col gap-3">

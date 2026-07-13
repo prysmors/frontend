@@ -41,7 +41,8 @@ export default function Hero() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]"
           >
             <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-[var(--color-mint)]" />
-            Enterprise Decision Intelligence
+            Turn Data Into Strategic Decisions
+
           </motion.div>
 
           <motion.h1
@@ -50,9 +51,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.08 }}
             className="font-display text-[13vw] leading-[0.98] font-extrabold tracking-tight text-[var(--color-text)] sm:text-6xl md:text-[4.6rem] xl:text-[5.2rem]"
           >
-            TURN DATA INTO
-            <br />
-            <span className="text-gradient">STRATEGIC DECISIONS.</span>
+            AI-Powered Decision Intelligence{" "}
+            <span className="text-gradient">for Modern Enterprises</span>
           </motion.h1>
 
           <motion.p
@@ -61,9 +61,10 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
           >
-            Prysmors is the AI-native decision engine that unifies enterprise data,
-            predictive analytics, and scenario simulation — so leadership teams act on
-            what&apos;s next, not just what already happened.
+            Every business generates data. The challenge is turning that data into decisions that move the business forward.
+            Prysmors brings together enterprise data, AI-powered analytics, predictive forecasting, and scenario planning into one intelligent platform. Instead of spending hours reviewing reports, leadership teams gain real-time insights, anticipate future outcomes, and make informed decisions with greater confidence.
+            See what&apos;s happening today. Understand what comes next. Decide with confidence.
+
           </motion.p>
 
           <motion.div
@@ -75,20 +76,20 @@ export default function Hero() {
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#dashboard"
-              onClick={scrollTo("#dashboard")}
+              href="#contact"
+              onClick={scrollTo("#contact")}
               className="inline-flex h-12 items-center gap-2 rounded-lg bg-[var(--color-mint)] px-6 text-sm font-bold text-[#06110d] shadow-[0_10px_30px_rgba(39,255,191,0.35)] transition-shadow hover:shadow-[0_0_36px_rgba(39,255,191,0.5)]"
             >
-              Explore the Dashboard
+              Book a Demo
             </motion.a>
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#contact"
-              onClick={scrollTo("#contact")}
+              href="#dashboard"
+              onClick={scrollTo("#dashboard")}
               className="inline-flex h-12 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white/[0.04] px-6 text-sm font-bold text-[var(--color-text)] backdrop-blur-sm transition-colors hover:border-[var(--color-mint)]/60 hover:bg-[var(--color-mint)]/10 hover:text-[var(--color-mint)]"
             >
-              Request a Demo
+              Explore the Platform
               <ArrowUpRight size={16} aria-hidden="true" />
             </motion.a>
           </motion.div>

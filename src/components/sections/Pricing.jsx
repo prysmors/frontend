@@ -52,21 +52,37 @@ export default function Pricing() {
                   )}
                 </div>
 
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className={`neu-pressable mt-7 flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-2xl text-sm font-bold transition-colors ${
-                    tier.featured
-                      ? "bg-[var(--color-mint)] text-[#06110d] btn-glow"
-                      : "neu-raised-sm text-[var(--color-text)]"
-                  }`}
-                >
-                  {tier.cta}
-                  <ArrowUpRight size={15} aria-hidden="true" />
-                </a>
+                {tier.href ? (
+                  <a
+                    href={tier.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`neu-pressable mt-7 flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-2xl text-sm font-bold transition-colors ${
+                      tier.featured
+                        ? "bg-[var(--color-mint)] text-[#06110d] btn-glow"
+                        : "neu-raised-sm text-[var(--color-text)]"
+                    }`}
+                  >
+                    {tier.cta}
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                ) : (
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className={`neu-pressable mt-7 flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-2xl text-sm font-bold transition-colors ${
+                      tier.featured
+                        ? "bg-[var(--color-mint)] text-[#06110d] btn-glow"
+                        : "neu-raised-sm text-[var(--color-text)]"
+                    }`}
+                  >
+                    {tier.cta}
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                )}
 
                 <ul className="mt-8 flex flex-1 flex-col gap-3.5 border-t border-[var(--color-border-soft)] pt-7">
                   {tier.features.map((f) => (

@@ -68,14 +68,12 @@ export default function FAQ() {
       <div className="container-px">
         <Reveal className="mb-16 text-center">
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
-            Questions
+            FAQ
           </span>
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
-            FREQUENTLY <span className="text-gradient">ASKED</span>
+            Common Questions,{" "}
+            <span className="text-gradient">Clear Answers</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            Everything you need to know about implementing Prysmors in your enterprise.
-          </p>
         </Reveal>
 
         <div className="mx-auto max-w-3xl space-y-3">
@@ -94,7 +92,7 @@ export default function FAQ() {
         {/* CTA below FAQ */}
         <Reveal delay={0.15} className="mt-14 text-center">
           <p className="mb-4 text-sm text-[var(--color-text-muted)]">
-            Still have questions? Our team is ready to help.
+            Still have questions? We&apos;re here to help.
           </p>
           <a
             href="#contact"

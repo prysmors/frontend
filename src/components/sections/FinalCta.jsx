@@ -17,12 +17,10 @@ export default function FinalCta() {
       />
       <div className="container-px relative z-10 text-center">
         <Reveal>
-          <h2 className="mx-auto max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
-            Ready to See Prysmors in Action?
+          <h2 className="mx-auto max-w-4xl font-display text-4xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-5xl">
+            From disconnected data to confident leadership,<br />
+            <span className="text-gradient">AI-powered intelligence for every strategic business decision.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
-            Request a guided platform demo tailored to your industry — no commitment required.
-          </p>
 
           <div className="mt-10 flex justify-center">
             <motion.a

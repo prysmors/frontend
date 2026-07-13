@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
+    "@marsidev/react-turnstile": "^1.5.3",
     "@supabase/supabase-js": "^2.57.4",
     "framer-motion": "^12.42.2",
     "lucide-react": "^0.344.0",

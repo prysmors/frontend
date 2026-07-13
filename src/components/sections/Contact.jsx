@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { COMPANY } from "../../data/content";
@@ -8,22 +9,46 @@ import { contactIllustration } from "../../assets";
 const INPUT_CLASS =
   "w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] px-4 py-3 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] outline-none transition-all focus:border-[var(--color-mint)] focus:ring-2 focus:ring-[var(--color-mint)]/15";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjeqjpa";
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const formRef = useRef(null);
+  const [token, setToken] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [errors, setErrors] = useState([]);
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("submitting");
-    // Simulate a form submission
-    setTimeout(() => {
-      setStatus("success");
-      setForm({ name: "", email: "", company: "", message: "" });
-    }, 1200);
+    setErrors([]);
+
+    if (!token) {
+      setErrors([{ message: "Please complete the security check." }]);
+      return;
+    }
+
+    setSubmitting(true);
+
+    const data = new FormData(formRef.current);
+    data.append("cf-turnstile-response", token);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setSucceeded(true);
+      } else {
+        const body = await res.json();
+        setErrors(body.errors || [{ message: "Something went wrong." }]);
+      }
+    } catch {
+      setErrors([{ message: "Network error. Please try again." }]);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -38,14 +63,14 @@ export default function Contact() {
       <div className="container-px relative z-10">
         <Reveal className="mb-16 text-center">
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
-            Get In Touch
+            Contact
           </span>
           <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
-            HAVE A PROJECT <span className="text-gradient">IN MIND?</span>
+            Let&apos;s Build Smarter{" "}
+            <span className="text-gradient">Decisions Together</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            Tell us about your enterprise. A senior solutions architect will reach out within one
-            business day.
+            Tell us about your enterprise. A senior solutions architect will reach out within one business day.
           </p>
         </Reveal>
 
@@ -84,7 +109,7 @@ export default function Contact() {
 
           {/* Form */}
           <Reveal y={20} delay={0.1}>
-            {status === "success" ? (
+            {succeeded ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -99,15 +124,10 @@ export default function Contact() {
                 <p className="max-w-xs text-sm text-[var(--color-text-muted)]">
                   A solutions architect from Prysmors will be in touch within one business day.
                 </p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="btn-outline mt-8"
-                >
-                  Send Another Message
-                </button>
               </motion.div>
             ) : (
               <form
+                ref={formRef}
                 onSubmit={handleSubmit}
                 className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 p-8 backdrop-blur-sm"
                 noValidate
@@ -123,8 +143,6 @@ export default function Contact() {
                       type="text"
                       required
                       placeholder="Jane Smith"
-                      value={form.name}
-                      onChange={handleChange}
                       className={INPUT_CLASS}
                     />
                   </div>
@@ -138,8 +156,6 @@ export default function Contact() {
                       type="email"
                       required
                       placeholder="jane@company.com"
-                      value={form.email}
-                      onChange={handleChange}
                       className={INPUT_CLASS}
                     />
                   </div>
@@ -154,8 +170,6 @@ export default function Contact() {
                     name="company"
                     type="text"
                     placeholder="Acme Corporation"
-                    value={form.company}
-                    onChange={handleChange}
                     className={INPUT_CLASS}
                   />
                 </div>
@@ -170,18 +184,24 @@ export default function Contact() {
                     required
                     rows={5}
                     placeholder="Tell us about your organization's decision intelligence challenges..."
-                    value={form.message}
-                    onChange={handleChange}
                     className={`${INPUT_CLASS} resize-none`}
+                  />
+                </div>
+
+                <div className="mt-5 flex justify-center">
+                  <Turnstile
+                    siteKey={import.meta.env.DEV ? "1x00000000000000000000AA" : "0x4AAAAAAD0x5xjDG0urBeMF"}
+                    onSuccess={setToken}
+                    options={{ theme: "dark" }}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
-                  className="btn-mint mt-6 w-full justify-center disabled:opacity-70"
+                  disabled={submitting}
+                  className="btn-mint mt-4 w-full justify-center disabled:opacity-70"
                 >
-                  {status === "submitting" ? (
+                  {submitting ? (
                     <span className="flex items-center gap-2">
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#06110d]/30 border-t-[#06110d]" />
                       Sending...
@@ -193,6 +213,12 @@ export default function Contact() {
                     </span>
                   )}
                 </button>
+
+                {errors.length > 0 && errors.map((e, i) => (
+                  <p key={i} className="mt-3 text-center text-xs text-red-400">
+                    {e.message}
+                  </p>
+                ))}
 
                 <p className="mt-4 text-center text-[11px] text-[var(--color-text-dim)]">
                   We respect your privacy. No spam, ever.

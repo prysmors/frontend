@@ -1,9 +1,9 @@
-import { marcusAvatar, priyaAvatar, elenaAvatar } from "../assets";
+
 
 export const COMPANY = {
   name: "Prysmors",
   legalName: "Prysmors LLC",
-  founder: "Rikaz Rifferrd",
+  founder: "Rikaz Riffered",
   founderRole: "Founder & CEO",
   founded: "April 20, 2024",
   address: "555 Fulston St, Ste C140, San Francisco, CA 94102",
@@ -118,27 +118,38 @@ export const HEALTH_METRICS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "Prysmors replaced three disconnected reporting tools with a single decision layer. Our leadership team now plans quarters in days, not weeks.",
-    name: "Elena Voss",
+      "Prysmors has transformed the way our leadership team approaches strategic planning. Instead of relying on static reports, we now have predictive insights that help us anticipate challenges and make decisions with greater confidence. It's become an essential part of our executive decision-making process.",
+    name: "Sarah Mitchell",
     role: "Chief Strategy Officer",
-    company: "Northbridge Financial",
-    avatar: elenaAvatar,
+    company: "Global Manufacturing Group",
   },
   {
     quote:
-      "The scenario simulation engine changed how we approach capital allocation. We can pressure-test a decision before it ever reaches the board.",
-    name: "Marcus Idehen",
-    role: "VP Operations",
-    company: "Kestrel Manufacturing",
-    avatar: marcusAvatar,
+      "The platform brings together data from multiple business systems into one intelligent view. Our teams spend less time gathering information and more time acting on meaningful insights. The AI recommendations have significantly improved the speed of our operational decisions.",
+    name: "Daniel Foster",
+    role: "VP of Operations",
+    company: "Horizon Retail Solutions",
   },
   {
     quote:
-      "It's the first analytics platform that feels built for executives, not analysts. The predictive dashboards are genuinely something we open every morning.",
-    name: "Priya Anand",
-    role: "CEO",
-    company: "Solace Health Systems",
-    avatar: priyaAvatar,
+      "What impressed us most was Prysmors' ability to forecast potential business outcomes before they happen. The scenario planning capabilities have helped us evaluate investment decisions with far greater clarity and reduced uncertainty.",
+    name: "Emily Carter",
+    role: "Chief Financial Officer",
+    company: "Apex Financial Services",
+  },
+  {
+    quote:
+      "Prysmors delivers more than dashboards, it provides context behind the numbers. Executive reporting has become faster, collaboration has improved, and our leadership team has a shared understanding of business performance across every department.",
+    name: "Michael Reynolds",
+    role: "Director of Business Intelligence",
+    company: "Nova Healthcare Systems",
+  },
+  {
+    quote:
+      "As our organization continued to grow, we needed a smarter way to connect enterprise data and support strategic planning. Prysmors has given us a reliable decision intelligence platform that scales with our business and helps us stay ahead of change.",
+    name: "Jessica Morgan",
+    role: "Chief Digital Officer",
+    company: "Summit Enterprise Group",
   },
 ];
 
@@ -165,6 +176,7 @@ export const PRICING_TIERS = [
       "1 workspace, 5 seats",
     ],
     cta: "Start with Essentials",
+    href: "https://buy.stripe.com/test_5kQ6oIeie9sve32e2jgjC01",
     featured: false,
   },
   {
@@ -181,6 +193,7 @@ export const PRICING_TIERS = [
       "API & SDK access",
     ],
     cta: "Start with Growth",
+    href: "https://buy.stripe.com/test_9B6aEY4HE0VZ0cc5vNgjC00",
     featured: true,
   },
   {
@@ -230,27 +243,27 @@ export const WHY_US = [
 
 export const FAQS = [
   {
-    q: "What exactly is an Enterprise Decision Intelligence platform?",
-    a: "It's a unified AI layer that sits above your existing systems — ERP, CRM, financial and operational data — and continuously turns that data into forecasts, simulated scenarios and prioritized recommendations for leadership, rather than static historical reports.",
+    q: "What is Prysmors?",
+    a: "Prysmors is an AI-native Enterprise Decision Intelligence platform that helps organizations transform data into strategic business decisions. By combining predictive analytics, AI reasoning, scenario simulation, and enterprise knowledge, it enables leadership teams to make faster and more informed decisions.",
   },
   {
-    q: "How is Prysmors different from traditional BI tools?",
-    a: "Traditional BI tells you what already happened. Prysmors is forward-looking: it predicts what's likely to happen, simulates what could happen under different strategies, and recommends what to do next — continuously, not on a reporting cycle.",
+    q: "How is Prysmors different from traditional Business Intelligence platforms?",
+    a: "Traditional BI platforms primarily focus on historical reporting and dashboards. Prysmors goes beyond reporting by analyzing enterprise data in real time, forecasting future outcomes, simulating business scenarios, and providing AI-powered recommendations to support proactive decision-making.",
   },
   {
-    q: "Which systems can Prysmors integrate with?",
-    a: "Prysmors connects to ERP, CRM, financial systems, HR platforms, supply-chain tools, cloud data warehouses and external market-intelligence APIs through pre-built connectors and an open integration SDK.",
+    q: "Which industries can benefit from Prysmors?",
+    a: "Prysmors is designed for organizations across multiple industries, including finance, manufacturing, healthcare, retail, logistics, technology, and government. Any enterprise looking to improve strategic planning and operational decision-making can benefit from the platform.",
   },
   {
-    q: "How long does implementation take?",
-    a: "Most enterprise deployments reach first production insights within 6–8 weeks, with a dedicated solutions team managing data connections, model calibration and executive dashboard configuration.",
+    q: "Can Prysmors integrate with our existing business systems?",
+    a: "Yes. Prysmors is built to integrate with leading ERP systems, CRM platforms, financial software, HR applications, cloud services, enterprise databases, and external data sources, allowing organizations to unify their business intelligence without replacing existing infrastructure.",
   },
   {
-    q: "Is my enterprise data secure?",
-    a: "Yes. Data is encrypted in transit and at rest, access is governed by enterprise SSO and role-based permissions, and every recommendation is fully auditable back to its source data.",
+    q: "Is Prysmors suitable for enterprises of different sizes?",
+    a: "Absolutely. The platform is designed with a scalable architecture that supports growing businesses as well as large enterprises. It adapts to evolving data volumes, users, and business requirements while maintaining enterprise-grade performance and security.",
   },
   {
-    q: "Do you offer an API for custom integrations?",
-    a: "Yes. The Prysmors Decision Intelligence API and analytics SDK let engineering teams embed predictive scoring, recommendations and simulation results directly into internal tools.",
+    q: "How can my organization get started with Prysmors?",
+    a: "Getting started is simple. Schedule a personalized demo with our team to explore how Prysmors can support your business goals. We'll walk you through the platform, discuss your requirements, and recommend the best approach for implementation.",
   },
 ];

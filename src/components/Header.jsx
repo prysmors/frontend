@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import useActiveSection from "../hooks/useActiveSection";
-import { logo } from "../assets";
+import { logo, favicon } from "../assets";
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""));
 
@@ -13,6 +13,10 @@ function scrollTo(href) {
     el.scrollIntoView({ behavior: "smooth" });
     window.history.pushState(null, "", href);
   }
+}
+
+function BrandGlyph() {
+  return <img src={favicon} alt="" className="h-full w-full object-contain" />;
 }
 
 export default function Header() {
@@ -60,26 +64,37 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-xl shadow-[0_1px_30px_rgba(0,0,0,0.5)]"
+            ? "border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
             : "bg-transparent"
         }`}
         style={{ height: "var(--header-h)" }}
       >
-        <div className="container-px flex h-full items-center justify-between gap-8">
-          {/* Logo */}
+        <div className="container-px flex h-full items-center justify-between gap-6">
+          {/* Logo — enlarged, with a soft ambient glow that intensifies on hover */}
           <a
             href="#home"
             onClick={handleLogoClick}
-            className="text-[var(--color-text)] no-underline"
+            className="group relative flex shrink-0 items-center text-[var(--color-text)] no-underline"
             aria-label="Prysmors — back to top"
           >
-            <img src={logo} alt="Prysmors" className="h-14 w-auto" />
+            <span
+              className="pointer-events-none absolute -inset-3 rounded-full bg-[var(--color-mint)]/0 blur-xl transition-all duration-500 group-hover:bg-[var(--color-mint)]/12"
+              aria-hidden="true"
+            />
+            <img
+              src={logo}
+              alt="Prysmors"
+              className="relative h-16 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-[4.5rem]"
+            />
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
+          {/* Desktop nav — glass pill capsule, animated active indicator */}
+          <nav
+            className="relative hidden items-center gap-0.5 rounded-full border border-[var(--color-border-soft)] bg-[var(--color-surface)]/40 p-1 backdrop-blur-md lg:flex"
+            aria-label="Primary navigation"
+          >
             {NAV_LINKS.map((link) => {
               const isActive = active === link.href.replace("#", "");
               return (
@@ -87,35 +102,55 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={handleNav(link.href)}
-                  className={`relative px-3.5 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  className={`relative whitespace-nowrap rounded-full px-3 py-2 text-xs font-medium tracking-wide transition-all duration-300 xl:px-4 xl:text-[13px] ${
                     isActive
-                      ? "text-[var(--color-mint)]"
+                      ? "text-[var(--color-bg)]"
                       : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
-                  {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 h-[2px] w-4 rounded-full bg-[var(--color-mint)]" />
+                    <span
+                      className="absolute inset-0 -z-10 rounded-full bg-[var(--color-mint)] shadow-[0_0_18px_-2px_var(--color-mint)]"
+                      aria-hidden="true"
+                    />
                   )}
+                  {!isActive && (
+                    <span
+                      className="absolute inset-0 -z-10 rounded-full bg-[var(--color-text)]/0 transition-colors duration-300 hover:bg-[var(--color-text)]/[0.06]"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {link.label}
                 </a>
               );
             })}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* CTA — real favicon badge, larger size, no ring */}
+          <div className="hidden shrink-0 lg:flex items-center">
             <Link
               to="/product"
-              className="btn-mint"
+              className="group/cta relative flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] py-1.5 pl-1.5 pr-5 text-[var(--color-text)] shadow-[0_0_0_1px_var(--color-border)] transition-all duration-300 hover:shadow-[0_0_28px_-6px_var(--color-mint)]"
             >
-              Prys_v2
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-bg)] transition-transform duration-300 group-hover/cta:scale-105">
+                <BrandGlyph />
+              </span>
+              <span className="text-[15px] font-semibold tracking-tight">Prys_v2</span>
+              <ArrowUpRight
+                size={15}
+                className="text-[var(--color-mint)] transition-transform duration-300 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5"
+              />
+              <span
+                className="pointer-events-none absolute inset-0 -z-10 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover/cta:translate-x-[120%]"
+                aria-hidden="true"
+              />
             </Link>
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="flex lg:hidden h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-text)] transition-colors hover:border-[var(--color-mint)] hover:text-[var(--color-mint)]"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/40 text-[var(--color-text)] backdrop-blur-md transition-all duration-300 hover:border-[var(--color-mint)]/50 hover:text-[var(--color-mint)] lg:hidden"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
@@ -127,7 +162,7 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col bg-[var(--color-bg)]/98 backdrop-blur-xl transition-all duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 flex flex-col bg-[var(--color-bg)]/98 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         style={{ paddingTop: "var(--header-h)" }}
@@ -142,13 +177,15 @@ export default function Header() {
                 onClick={(e) => { handleNav(link.href)(e); setMenuOpen(false); }}
                 className={`flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold transition-all duration-200 ${
                   isActive
-                    ? "bg-[var(--color-mint-deep)] text-[var(--color-mint)]"
+                    ? "bg-[var(--color-mint-deep)] text-[var(--color-mint)] shadow-[0_0_20px_-8px_var(--color-mint)]"
                     : "text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]"
                 }`}
                 style={{ transitionDelay: menuOpen ? `${i * 40}ms` : "0ms" }}
               >
                 <span
-                  className={`h-1.5 w-1.5 rounded-full ${isActive ? "bg-[var(--color-mint)]" : "bg-[var(--color-border)]"}`}
+                  className={`h-1.5 w-1.5 rounded-full transition-all duration-200 ${
+                    isActive ? "bg-[var(--color-mint)] shadow-[0_0_8px_var(--color-mint)]" : "bg-[var(--color-border)]"
+                  }`}
                 />
                 {link.label}
               </a>
@@ -158,9 +195,13 @@ export default function Header() {
             <Link
               to="/product"
               onClick={() => setMenuOpen(false)}
-              className="btn-mint w-full justify-center"
+              className="relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] py-2.5 pl-2.5 pr-5 text-[var(--color-text)] shadow-[0_0_0_1px_var(--color-border)]"
             >
-              Prys_v2
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-bg)]">
+                <BrandGlyph />
+              </span>
+              <span className="text-[15px] font-semibold tracking-tight">Prys_v2</span>
+              <ArrowUpRight size={15} className="text-[var(--color-mint)]" />
             </Link>
           </div>
         </nav>
