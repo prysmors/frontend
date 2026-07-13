@@ -1,13 +1,8 @@
-import { Twitter, Facebook, Youtube, Linkedin } from "lucide-react";
+import { Facebook, Youtube, Linkedin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { NAV_LINKS, COMPANY } from "../data/content";
 import { logo } from "../assets";
 
-function scrollTo(href) {
-  const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
-// lucide-react has no Pinterest glyph — custom outline SVG matching the same stroke style
 function PinterestIcon({ size = 16 }) {
   return (
     <svg
@@ -27,9 +22,22 @@ function PinterestIcon({ size = 16 }) {
   );
 }
 
+function XIcon({ size = 16 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
 const SOCIALS = [
   { href: "https://www.facebook.com/Prysmors/", Icon: Facebook, label: "Facebook" },
-  { href: "https://x.com/Prysmors", Icon: Twitter, label: "Twitter / X" },
+  { href: "https://x.com/Prysmors", Icon: XIcon, label: "X" },
   { href: "https://www.pinterest.com/Prysmors/", Icon: PinterestIcon, label: "Pinterest" },
   { href: "https://www.youtube.com/@Prysmors", Icon: Youtube, label: "YouTube" },
   { href: "https://www.linkedin.com/company/prysmors/", Icon: Linkedin, label: "LinkedIn" },
@@ -41,6 +49,7 @@ const LEGAL_LINKS = [
 ];
 
 function NavColumn({ items, heading, headingId }) {
+  const navigate = useNavigate();
   return (
     <div>
       <p
@@ -54,7 +63,7 @@ function NavColumn({ items, heading, headingId }) {
           <li key={link.href}>
             <a
               href={link.href}
-              onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+              onClick={(e) => { e.preventDefault(); navigate("/" + link.href); }}
               className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-mint)]"
             >
               {link.label}
@@ -68,6 +77,7 @@ function NavColumn({ items, heading, headingId }) {
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const navigate = useNavigate();
   const mid = Math.ceil(NAV_LINKS.length / 2);
   const navCol1 = NAV_LINKS.slice(0, mid);
   const navCol2 = NAV_LINKS.slice(mid);
@@ -80,7 +90,7 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <a
               href="#home"
-              onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}
+              onClick={(e) => { e.preventDefault(); navigate("/"); }}
               className="mb-4 inline-block text-[var(--color-text)] no-underline"
               aria-label="Prysmors — back to top"
             >

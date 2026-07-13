@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import DemoModal from "../DemoModal";
 import { heroGraphic } from "../../assets";
 
 export default function Hero() {
   const [demoOpen, setDemoOpen] = useState(false);
-
-  const scrollTo = (href) => (e) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const navigate = useNavigate();
 
   return (
     <section
@@ -77,7 +74,7 @@ export default function Hero() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               href="#contact"
-              onClick={scrollTo("#contact")}
+              onClick={(e) => { e.preventDefault(); navigate("/#contact"); }}
               className="inline-flex h-12 items-center gap-2 rounded-lg bg-[var(--color-mint)] px-6 text-sm font-bold text-[#06110d] shadow-[0_10px_30px_rgba(39,255,191,0.35)] transition-shadow hover:shadow-[0_0_36px_rgba(39,255,191,0.5)]"
             >
               Book a Demo
@@ -85,8 +82,8 @@ export default function Hero() {
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="#dashboard"
-              onClick={scrollTo("#dashboard")}
+              href="/product"
+              onClick={(e) => { e.preventDefault(); navigate("/product"); }}
               className="inline-flex h-12 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white/[0.04] px-6 text-sm font-bold text-[var(--color-text)] backdrop-blur-sm transition-colors hover:border-[var(--color-mint)]/60 hover:bg-[var(--color-mint)]/10 hover:text-[var(--color-mint)]"
             >
               Explore the Platform

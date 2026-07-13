@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { NAV_LINKS } from "./data/content";
 import Header from "./components/Header";
 import SiteBackground from "./components/SiteBackground";
+import ScrollManager from "./components/ScrollManager";
 import Hero from "./components/sections/Hero";
 import TrustBar from "./components/sections/TrustBar";
 import Dashboard from "./components/sections/Dashboard";
@@ -16,7 +18,20 @@ import Contact from "./components/sections/Contact";
 import FinalCta from "./components/sections/FinalCta";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
+import ChatwootWidget from "./components/ChatwootWidget";
 import ProductPage from "./components/ProductPage";
+
+const VALID_SLUGS = new Set(
+  NAV_LINKS.map((l) => l.href.replace("#", ""))
+);
+
+function SectionRedirect() {
+  const { sectionSlug } = useParams();
+  if (VALID_SLUGS.has(sectionSlug)) {
+    return <Navigate to={`/#${sectionSlug}`} replace />;
+  }
+  return <Navigate to="/" replace />;
+}
 
 function HomePage() {
   return (
@@ -63,8 +78,11 @@ function HomePage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollManager />
+      <ChatwootWidget />
       <Routes>
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/:sectionSlug" element={<SectionRedirect />} />
         <Route
           path="*"
           element={

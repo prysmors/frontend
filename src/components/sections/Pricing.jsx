@@ -1,8 +1,10 @@
 import { Check, ArrowUpRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Reveal from "../../hooks/useReveal";
 import { PRICING_TIERS } from "../../data/content";
 
 export default function Pricing() {
+  const navigate = useNavigate();
   return (
     <section id="pricing" className="relative py-24 sm:py-32">
       <div className="container-px">
@@ -71,7 +73,7 @@ export default function Pricing() {
                     href="#contact"
                     onClick={(e) => {
                       e.preventDefault();
-                      document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                      navigate("/#contact");
                     }}
                     className={`neu-pressable mt-7 flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-2xl text-sm font-bold transition-colors ${
                       tier.featured

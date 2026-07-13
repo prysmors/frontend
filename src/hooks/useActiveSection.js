@@ -1,32 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0]);
+  const seen = useRef(new Set());
 
   useEffect(() => {
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (sections.length === 0) return;
-
+    seen.current = new Set();
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) {
-          const topMost = visible.reduce((a, b) =>
-            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
-          );
-          setActive(topMost.target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            seen.current.add(entry.target.id);
+          } else {
+            seen.current.delete(entry.target.id);
+          }
+        });
+        if (seen.current.size > 0) {
+          const first = ids.find((id) => seen.current.has(id));
+          if (first) setActive(first);
         }
       },
-      {
-        rootMargin: "-15% 0px -60% 0px",
-        threshold: [0, 0.1, 0.25, 0.5],
-      }
+      { rootMargin: "-80px 0px -40% 0px", threshold: 0 }
     );
 
-    sections.forEach((s) => observer.observe(s));
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
     return () => observer.disconnect();
   }, [ids]);
 

@@ -5,6 +5,7 @@
 :root {
   color-scheme: dark;
 
+  --header-h: 80px;
   --color-ink: #060a0d;
   --color-bg: #0a0f14;
   --color-bg-alt: #0d1420;
@@ -27,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -327,4 +328,8 @@ p { margin: 0; }
   inset: 0;
   z-index: -1;
   background: linear-gradient(180deg, transparent 0%, rgba(16,25,35,0.55) 15%, rgba(16,25,35,0.55) 85%, transparent 100%);
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
 }

@@ -1,7 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { COMPANY } from "../../data/content";
-import { aboutIllustration } from "../../assets";
+import { aboutIllustration, founderImage } from "../../assets";
 
 const POINTS = [
   "AI-native decision intelligence built for modern enterprises",
@@ -64,7 +64,7 @@ export default function About() {
 
           <div className="mt-9 flex items-center gap-4 rounded-2xl border border-[var(--color-border-soft)] bg-[var(--color-surface)]/60 p-4">
             <img
-              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&q=80"
+              src={founderImage}
               alt={`Portrait of ${COMPANY.founder}, ${COMPANY.founderRole} of ${COMPANY.legalName}`}
               loading="lazy"
               className="h-14 w-14 rounded-full object-cover"

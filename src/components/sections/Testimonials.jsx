@@ -2,6 +2,21 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { TESTIMONIALS, CLIENT_LOGOS } from "../../data/content";
+import {
+  sarahMitchellAvatar,
+  danielFosterAvatar,
+  emilyCarterAvatar,
+  michaelReynoldsAvatar,
+  jessicaMorganAvatar,
+} from "../../assets";
+
+const AVATARS = {
+  "Sarah Mitchell": sarahMitchellAvatar,
+  "Daniel Foster": danielFosterAvatar,
+  "Emily Carter": emilyCarterAvatar,
+  "Michael Reynolds": michaelReynoldsAvatar,
+  "Jessica Morgan": jessicaMorganAvatar,
+};
 
 export default function Testimonials() {
   const [i, setI] = useState(0);
@@ -54,9 +69,17 @@ export default function Testimonials() {
             <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="neu-inset flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full">
-                  <span className="font-display text-sm font-bold text-[var(--color-mint)]">
-                    {t.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
+                  {AVATARS[t.name] ? (
+                    <img
+                      src={AVATARS[t.name]}
+                      alt={`Portrait of ${t.name}`}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-display text-sm font-bold text-[var(--color-mint)]">
+                      {t.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--color-text)]">{t.name}</p>

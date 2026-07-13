@@ -4,16 +4,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import useActiveSection from "../hooks/useActiveSection";
 import { logo, favicon } from "../assets";
+import { forceScrollToHash, forceScrollToTop } from "./ScrollManager";
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""));
-
-function scrollTo(href) {
-  const el = document.querySelector(href);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-    window.history.pushState(null, "", href);
-  }
-}
 
 function BrandGlyph() {
   return <img src={favicon} alt="" className="h-full w-full object-contain" />;
@@ -23,14 +16,13 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveSection(SECTION_IDS);
-  const location = useLocation();
   const navigate = useNavigate();
-  const isHome = location.pathname === "/";
+  const location = useLocation();
 
   const handleNav = (href) => (e) => {
     e.preventDefault();
-    if (isHome) {
-      scrollTo(href);
+    if (location.pathname === "/") {
+      forceScrollToHash(href);
     } else {
       navigate("/" + href);
     }
@@ -39,8 +31,8 @@ export default function Header() {
   const handleLogoClick = (e) => {
     e.preventDefault();
     setMenuOpen(false);
-    if (isHome) {
-      scrollTo("#home");
+    if (location.pathname === "/") {
+      forceScrollToTop();
     } else {
       navigate("/");
     }

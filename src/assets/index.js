@@ -34,11 +34,14 @@ export { default as dedicatedImplementationIcon } from "./why-us/dedicated-imple
 
 // About
 export { default as aboutIllustration } from "./about/about-illustration.svg";
+export { default as founderImage } from "./about/Founder.svg";
 
 // Contact
 export { default as contactIllustration } from "./contact/contact-illustration.svg";
 
 // Testimonials
-export { default as marcusAvatar } from "./testimonials/marcus-idehen.svg";
-export { default as priyaAvatar } from "./testimonials/priya-anand.svg";
-export { default as elenaAvatar } from "./testimonials/elena-voss.svg";
+export { default as sarahMitchellAvatar } from "./testimonials/SarahMitchell.svg";
+export { default as danielFosterAvatar } from "./testimonials/DanielFoster.svg";
+export { default as emilyCarterAvatar } from "./testimonials/EmilyCarter.svg";
+export { default as michaelReynoldsAvatar } from "./testimonials/MichaelReynolds.svg";
+export { default as jessicaMorganAvatar } from "./testimonials/JessicaMorgan.svg";

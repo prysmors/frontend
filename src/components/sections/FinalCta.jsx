@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Reveal from "../../hooks/useReveal";
 
 export default function FinalCta() {
-  const scrollTo = (href) => (e) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const navigate = useNavigate();
 
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
@@ -25,7 +23,7 @@ export default function FinalCta() {
           <div className="mt-10 flex justify-center">
             <motion.a
               href="#contact"
-              onClick={scrollTo("#contact")}
+              onClick={(e) => { e.preventDefault(); navigate("/#contact"); }}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
               className="animate-pulse-glow inline-flex items-center gap-2 rounded-full bg-[var(--color-mint)] px-8 py-4 text-base font-bold text-[#06110d] shadow-[0_0_50px_rgba(39,255,191,0.35)]"
@@ -36,7 +34,7 @@ export default function FinalCta() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[var(--color-text-dim)]">
-            <a href="#contact" onClick={scrollTo("#contact")} className="hover:text-[var(--color-mint)]">
+            <a href="#contact" onClick={(e) => { e.preventDefault(); navigate("/#contact"); }} className="hover:text-[var(--color-mint)]">
               Talk to Our Team
             </a>
             <span aria-hidden="true">·</span>
@@ -44,7 +42,7 @@ export default function FinalCta() {
               Download Platform Overview
             </a>
             <span aria-hidden="true">·</span>
-            <a href="#dashboard" onClick={scrollTo("#dashboard")} className="hover:text-[var(--color-mint)]">
+            <a href="#dashboard" onClick={(e) => { e.preventDefault(); navigate("/#dashboard"); }} className="hover:text-[var(--color-mint)]">
               Explore the Dashboard
             </a>
           </div>
