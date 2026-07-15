@@ -15,7 +15,7 @@ export default function FinalCta() {
       />
       <div className="container-px relative z-10 text-center">
         <Reveal>
-          <h2 className="mx-auto max-w-4xl font-display text-4xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="mx-auto max-w-4xl font-display text-3xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             From disconnected data to confident leadership,<br />
             <span className="text-gradient">AI-powered intelligence for every strategic business decision.</span>
           </h2>

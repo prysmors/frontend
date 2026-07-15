@@ -12,7 +12,7 @@ export default function Pricing() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             Pricing
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="font-display text-3xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             PLANS THAT SCALE <span className="text-gradient">WITH YOUR DECISIONS.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">

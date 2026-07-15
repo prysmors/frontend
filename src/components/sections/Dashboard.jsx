@@ -18,7 +18,7 @@ export default function Dashboard() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             The Dashboard
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="font-display text-3xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             YOUR ENTERPRISE, <span className="text-gradient">UNDERSTOOD IN REAL TIME.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
@@ -34,7 +34,7 @@ export default function Dashboard() {
               <p className="mb-5 font-display text-sm font-semibold uppercase tracking-widest text-[var(--color-mint)]">
                 Enterprise Data Sources
               </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                 {DATA_SOURCES.map((src) => (
                   <div
                     key={src.name}
@@ -68,7 +68,7 @@ export default function Dashboard() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
                 {HEALTH_METRICS.map((m, i) => (
                   <motion.div
                     key={m.label}
@@ -81,7 +81,7 @@ export default function Dashboard() {
                     <p className="mb-2 text-[11px] uppercase tracking-wide text-[var(--color-text-dim)]">
                       {m.label}
                     </p>
-                    <p className="font-display text-3xl font-extrabold text-[var(--color-text)] transition-colors group-hover:text-[var(--color-mint)]">
+                    <p className="font-display text-2xl font-extrabold text-[var(--color-text)] transition-colors group-hover:text-[var(--color-mint)] sm:text-3xl">
                       {m.value}
                       <span className="font-mono text-lg text-[var(--color-mint)]">{m.suffix}</span>
                     </p>

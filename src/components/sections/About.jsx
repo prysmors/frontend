@@ -19,7 +19,7 @@ export default function About() {
               src={aboutIllustration}
               alt="Prysmors about illustration"
               loading="lazy"
-              className="h-[420px] w-full object-cover sm:h-[500px]"
+              className="h-[280px] w-full object-cover sm:h-[420px] md:h-[500px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-transparent to-transparent" />
           </div>
@@ -39,7 +39,7 @@ export default function About() {
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             About Prysmors
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="font-display text-3xl font-extrabold leading-[1.1] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             Built for{" "}
             <span className="text-gradient">Better Business Decisions</span>
           </h2>

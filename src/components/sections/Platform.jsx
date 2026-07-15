@@ -26,7 +26,7 @@ export default function Platform() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             How It Works
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="font-display text-3xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             THE DECISION <span className="text-gradient">INTELLIGENCE PIPELINE</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
@@ -97,7 +97,7 @@ export default function Platform() {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
               {HEALTH_METRICS.map((m, i) => (
                 <motion.div
                   key={m.label}
@@ -110,7 +110,7 @@ export default function Platform() {
                   <p className="mb-2 text-[11px] uppercase tracking-wide text-[var(--color-text-dim)]">
                     {m.label}
                   </p>
-                  <p className="font-display text-3xl font-extrabold text-[var(--color-text)] group-hover:text-[var(--color-mint)] transition-colors">
+                  <p className="font-display text-2xl font-extrabold text-[var(--color-text)] group-hover:text-[var(--color-mint)] transition-colors sm:text-3xl">
                     {m.value}
                     <span className="font-mono text-lg text-[var(--color-mint)]">{m.suffix}</span>
                   </p>

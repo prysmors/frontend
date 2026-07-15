@@ -38,7 +38,7 @@ export default function WhyUs() {
             <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
               Why Choose Us
             </span>
-            <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
+            <h2 className="font-display text-3xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-4xl md:text-5xl">
               WHY <span className="text-gradient">CHOOSE PRYSMORS?</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">

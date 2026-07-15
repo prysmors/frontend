@@ -203,7 +203,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             onClick={() => setDemoOpen(true)}
             aria-label="Watch a preview of how the platform works"
-            className="animate-pulse-glow absolute -bottom-2 left-6 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-[var(--color-mint)] text-[#06110d] shadow-[0_0_40px_rgba(39,255,191,0.5)] sm:left-10"
+            className="animate-pulse-glow absolute -bottom-4 left-6 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-[var(--color-mint)] text-[#06110d] shadow-[0_0_40px_rgba(39,255,191,0.5)] sm:left-10"
           >
             <Play size={22} fill="#06110d" aria-hidden="true" />
           </motion.button>

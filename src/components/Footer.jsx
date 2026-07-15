@@ -44,8 +44,8 @@ const SOCIALS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
 ];
 
 function NavColumn({ items, heading, headingId }) {
@@ -135,6 +135,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <a
                     href={item.href}
+                    onClick={(e) => { e.preventDefault(); navigate(item.href); }}
                     className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-mint)]"
                   >
                     {item.label}

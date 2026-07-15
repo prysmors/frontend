@@ -20,6 +20,8 @@ import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import ChatwootWidget from "./components/ChatwootWidget";
 import ProductPage from "./components/ProductPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const VALID_SLUGS = new Set(
   NAV_LINKS.map((l) => l.href.replace("#", ""))
@@ -82,6 +84,8 @@ export default function App() {
       <ChatwootWidget />
       <Routes>
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/:sectionSlug" element={<SectionRedirect />} />
         <Route
           path="*"

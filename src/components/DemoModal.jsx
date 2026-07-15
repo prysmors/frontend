@@ -37,7 +37,7 @@ export default function DemoModal({ open, onClose }) {
           role="dialog"
           aria-modal="true"
           aria-label="Prysmors platform preview"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 lg:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -59,7 +59,7 @@ export default function DemoModal({ open, onClose }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 grid w-full max-w-4xl grid-cols-1 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-solid,#0d1512)] shadow-[0_60px_140px_rgba(0,0,0,0.65)] lg:grid-cols-2"
+            className="relative z-10 flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-solid,#0d1512)] shadow-[0_60px_140px_rgba(0,0,0,0.65)] lg:grid lg:grid-cols-2"
           >
             <button
               ref={closeBtnRef}
@@ -71,10 +71,9 @@ export default function DemoModal({ open, onClose }) {
               <X size={18} aria-hidden="true" />
             </button>
 
-            {/* Left: hero video (replaces the old isometric circuit graph) */}
-            <div className="relative flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)] p-0">
+            {/* Left: hero video */}
+            <div className="relative flex items-stretch justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)]">
               <div className="grid-overlay absolute inset-0 opacity-20" aria-hidden="true" />
-              {/* edge blend overlays so the video fades into the panel background */}
               <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
                 <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#050a0d] to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050a0d] to-transparent" />
@@ -85,7 +84,7 @@ export default function DemoModal({ open, onClose }) {
                 initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[360px] w-full sm:h-[460px]"
+                className="relative aspect-video w-full lg:h-full lg:aspect-auto"
               >
                 <video
                   ref={videoRef}
@@ -93,13 +92,13 @@ export default function DemoModal({ open, onClose }) {
                   loop
                   muted
                   playsInline
-                  className="h-full w-full object-contain border-none outline-none"
+                  className="h-full w-full object-cover border-none outline-none"
                 />
               </motion.div>
             </div>
 
             {/* Right: simulated live demo panel */}
-            <div className="flex flex-col justify-center gap-6 border-t border-[var(--color-border-soft)] p-8 lg:border-l lg:border-t-0 sm:p-10">
+            <div className="flex flex-1 flex-col justify-center gap-4 overflow-y-auto border-t border-[var(--color-border-soft)] p-6 sm:gap-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
               <div>
                 <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[var(--color-mint)]">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-mint)]" />
@@ -115,7 +114,7 @@ export default function DemoModal({ open, onClose }) {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
                 <DemoStat icon={TrendingUp} label="Forecast Growth" value="+18.2%" delay={0.1} />
                 <DemoStat icon={Activity} label="GPU Utilization" value="82%" delay={0.2} />
                 <DemoStat icon={Cpu} label="Decision Confidence" value="94%" delay={0.3} />

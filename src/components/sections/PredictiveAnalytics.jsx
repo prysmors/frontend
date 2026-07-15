@@ -42,7 +42,7 @@ export default function PredictiveAnalytics() {
           <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-[var(--color-mint)]">
             Predictive Analytics
           </span>
-          <h2 className="font-display text-4xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-5xl">
+          <h2 className="font-display text-3xl font-extrabold leading-[1.05] text-[var(--color-text)] sm:text-4xl md:text-5xl">
             SEE WHAT&apos;S COMING,
             <br />
             <span className="text-gradient">NOT JUST WHAT HAPPENED.</span>
@@ -73,7 +73,7 @@ export default function PredictiveAnalytics() {
             ref={ref}
             onPointerMove={handlePointerMove}
             onPointerLeave={handlePointerLeave}
-            className="relative h-[420px] sm:h-[500px]"
+            className="relative h-[300px] sm:h-[420px] md:h-[500px]"
           >
             {/* ambient glow follows the pointer — CSS/transform only, cheap on the GPU */}
             <motion.div

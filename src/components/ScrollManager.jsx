@@ -9,10 +9,7 @@ function scrollToHash(hash) {
   if (!el) return false;
   const rect = el.getBoundingClientRect();
   const top = rect.top + window.scrollY - HEADER_HEIGHT;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  requestAnimationFrame(() => {
-    window.scrollTo({ top, behavior: "smooth" });
-  });
+  window.scrollTo({ top, behavior: "smooth" });
   return true;
 }
 
@@ -43,6 +40,7 @@ export default function ScrollManager() {
     if (!pathChanged && !hashChanged) return;
 
     if (pathChanged) {
+      window.scrollTo({ top: 0, behavior: "instant" });
       if (hash) {
         let attempts = 0;
         const tryScroll = () => {
@@ -53,8 +51,6 @@ export default function ScrollManager() {
           }
         };
         requestAnimationFrame(tryScroll);
-      } else {
-        window.scrollTo({ top: 0, behavior: "instant" });
       }
     } else if (hashChanged) {
       if (hash) {

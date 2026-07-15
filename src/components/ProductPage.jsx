@@ -162,21 +162,21 @@ export default function ProductPage() {
 
       <section id="telemetry" className="bg-[#040605] border-y border-[#14221a] py-12 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div className="bg-[#0b110e] border border-[#14221a] p-6 rounded-xl">
-              <span className="text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">97.4%</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">97.4%</span>
               <span className="text-[10px] font-mono font-bold text-gray-500 mt-2 block uppercase tracking-wider">Prediction Accuracy Threshold</span>
             </div>
             <div className="bg-[#0b110e] border border-[#14221a] p-6 rounded-xl">
-              <span className="text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">128+</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">128+</span>
               <span className="text-[10px] font-mono font-bold text-gray-500 mt-2 block uppercase tracking-wider">Enterprise Ingest Integrations</span>
             </div>
             <div className="bg-[#0b110e] border border-[#14221a] p-6 rounded-xl">
-              <span className="text-3xl md:text-4xl font-black tracking-tight text-white block">6-8 Wks</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white block">6-8 Wks</span>
               <span className="text-[10px] font-mono font-bold text-gray-500 mt-2 block uppercase tracking-wider">To First Production Insight</span>
             </div>
             <div className="bg-[#0b110e] border border-[#14221a] p-6 rounded-xl">
-              <span className="text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">&lt; 150ms</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#00ffaa] block">&lt; 150ms</span>
               <span className="text-[10px] font-mono font-bold text-gray-500 mt-2 block uppercase tracking-wider">Complex Risk Scenario Renders</span>
             </div>
           </div>
@@ -237,12 +237,12 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="mt-6 border-t border-[#14221a] pt-4 grid grid-cols-3 gap-2 text-center font-mono text-[10px] bg-black/40 p-2.5 rounded-xl border border-[#14221a]">
+            <div className="mt-6 border-t border-[#14221a] pt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-center font-mono text-[10px] bg-black/40 p-2.5 rounded-xl border border-[#14221a]">
               <div>
                 <span className="text-gray-600 block mb-0.5">COMPUTE_ENGINE</span>
                 <span className="text-white font-black uppercase">{currentProfile.metrics.engine}</span>
               </div>
-              <div className="border-x border-[#14221a]">
+              <div className="border-x-0 border-[#14221a] sm:border-x">
                 <span className="text-gray-600 block mb-0.5">TARGET_OPTIMIZATION</span>
                 <span className="text-[#00ffaa] font-black uppercase">{currentProfile.metrics.optimization}</span>
               </div>
