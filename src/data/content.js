@@ -9,7 +9,7 @@ export const COMPANY = {
   address: "555 Fulston St, Ste C140, San Francisco, CA 94102",
   phone: "+1 315-931-1053",
   phoneHref: "tel:+13159311053",
-  email: "hello@prysmors.com",
+  email: "help@prysmors.com",
   website: "prysmors.com",
 };
 
