@@ -15,9 +15,11 @@ function BrandGlyph() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(SECTION_IDS);
+  const rawActive = useActiveSection(SECTION_IDS);
   const navigate = useNavigate();
   const location = useLocation();
+  const isProductPage = location.pathname === "/product";
+  const active = isProductPage ? null : rawActive;
 
   const handleNav = (href) => (e) => {
     e.preventDefault();
@@ -123,7 +125,11 @@ export default function Header() {
           <div className="hidden shrink-0 lg:flex items-center">
             <Link
               to="/product"
-              className="group/cta relative flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] py-1.5 pl-1.5 pr-5 text-[var(--color-text)] shadow-[0_0_0_1px_var(--color-border)] transition-all duration-300 hover:shadow-[0_0_28px_-6px_var(--color-mint)]"
+              className={`group/cta relative flex items-center gap-3 overflow-hidden rounded-2xl py-1.5 pl-1.5 pr-5 text-[var(--color-text)] transition-all duration-300 ${
+                isProductPage
+                  ? "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-mint-deep)] shadow-[0_0_28px_-6px_var(--color-mint)] ring-1 ring-[var(--color-mint)]/40"
+                  : "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] shadow-[0_0_0_1px_var(--color-border)] hover:shadow-[0_0_28px_-6px_var(--color-mint)]"
+              }`}
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-bg)] transition-transform duration-300 group-hover/cta:scale-105">
                 <BrandGlyph />
@@ -187,7 +193,11 @@ export default function Header() {
             <Link
               to="/product"
               onClick={() => setMenuOpen(false)}
-              className="relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] py-2.5 pl-2.5 pr-5 text-[var(--color-text)] shadow-[0_0_0_1px_var(--color-border)]"
+              className={`relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl py-2.5 pl-2.5 pr-5 text-[var(--color-text)] ${
+                isProductPage
+                  ? "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-mint-deep)] shadow-[0_0_20px_-6px_var(--color-mint)] ring-1 ring-[var(--color-mint)]/40"
+                  : "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] shadow-[0_0_0_1px_var(--color-border)]"
+              }`}
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-bg)]">
                 <BrandGlyph />

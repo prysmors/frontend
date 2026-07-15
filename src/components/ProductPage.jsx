@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
 
-// Specialized UI Icons
 const ArrowUpRight = ({ className = "w-4 h-4" }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -13,8 +14,8 @@ const IntelligenceNode = () => (
   </svg>
 );
 
-export default function PrysmorsPortal() {
-  const [activeSdk, setActiveSdk] = useState<string>('RAPIDS');
+export default function ProductPage() {
+  const [activeSdk, setActiveSdk] = useState('RAPIDS');
 
   const sdkMatrix = [
     {
@@ -90,45 +91,11 @@ export default function PrysmorsPortal() {
   return (
     <div className="min-h-screen bg-[#070b09] text-[#e2e8f0] font-sans antialiased selection:bg-[#00ffaa] selection:text-black">
       
-      {/* 1. Cyber Navigation Bar */}
-      <header className="w-full border-b border-[#14221a] bg-[#070b09]/90 backdrop-blur-md sticky top-0 z-50 px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
-          
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-2">
-              <span className="w-3 h-3 bg-[#00ffaa] rounded-sm animate-pulse" />
-              <span className="text-xl font-black tracking-[0.2em] text-white uppercase">
-                PRYSMORS
-              </span>
-            </div>
-            <div className="hidden sm:inline-block border border-[#14221a] rounded px-2 py-0.5 text-[9px] font-mono font-bold tracking-widest text-[#00ffaa] bg-[#0c1410]">
-              DECISION_INTELLIGENCE_NODE
-            </div>
-          </div>
+      <Header />
 
-          <nav className="hidden lg:flex items-center space-x-8 text-[10px] font-mono tracking-widest uppercase font-bold text-gray-400">
-            <a href="#overview" className="text-[#00ffaa] hover:text-[#00dd90] transition-colors">Platform Vision</a>
-            <a href="#telemetry" className="hover:text-[#00ffaa] transition-colors">Operational Baselines</a>
-            <a href="#acceleration" className="hover:text-[#00ffaa] transition-colors">GPU Acceleration Matrix</a>
-            <a href="#clusters" className="hover:text-[#00ffaa] transition-colors">Compute Infrastructure</a>
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            <button className="bg-transparent hover:bg-[#101f17] text-white border border-[#1b3827] font-mono font-bold text-xs px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all">
-              <span>EXPLORE PLATFORM</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#00ffaa]" />
-            </button>
-          </div>
-
-        </div>
-      </header>
-
-      {/* 2. Hero Interactive Command Workspace */}
       <section id="overview" className="relative border-b border-[#14221a] py-16 lg:py-24 px-4 lg:px-8 overflow-hidden">
-        {/* Matrix Grid overlay lines */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#111f17_1px,transparent_1px),linear-gradient(to_bottom,#111f17_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40 pointer-events-none" />
         
-        {/* Cyber Radiance Glow maps */}
         <div className="absolute top-1/4 left-10 w-96 h-96 rounded-full bg-[#00ffaa]/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-[#10b981]/5 blur-[100px] pointer-events-none" />
 
@@ -153,14 +120,13 @@ export default function PrysmorsPortal() {
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4">
-              <button className="bg-[#00ffaa] hover:bg-[#00dd90] text-black text-xs font-mono font-black px-6 py-4 rounded-xl flex items-center space-x-2 transition-all shadow-lg shadow-[#00ffaa]/10">
+              <a href="https://app.prysmors.com/" target="_blank" rel="noopener noreferrer" className="bg-[#00ffaa] hover:bg-[#00dd90] text-black text-xs font-mono font-black px-6 py-4 rounded-xl flex items-center space-x-2 transition-all shadow-lg shadow-[#00ffaa]/10">
                 <span>INITIALIZE PRYSMORS CORE</span>
                 <ArrowUpRight className="w-4 h-4 text-black" />
-              </button>
+              </a>
             </div>
           </div>
 
-          {/* Right Floating Cyber Sandbox Component Graphic */}
           <div className="lg:col-span-5 flex items-center justify-center">
             <div className="w-full max-w-md bg-[#0b110e] border border-[#14221a] rounded-2xl p-6 shadow-2xl relative">
               <div className="absolute top-3 right-4 font-mono text-[8px] tracking-widest text-gray-600 font-bold">SYSTEM_STACK_TOPOLOGY</div>
@@ -194,7 +160,6 @@ export default function PrysmorsPortal() {
         </div>
       </section>
 
-      {/* 3. The Obsidian High-Capacity Performance Dashboard Band */}
       <section id="telemetry" className="bg-[#040605] border-y border-[#14221a] py-12 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
@@ -218,7 +183,6 @@ export default function PrysmorsPortal() {
         </div>
       </section>
 
-      {/* 4. Advanced Planned Architecture SDK Matrix */}
       <section id="acceleration" className="py-20 px-4 lg:px-8 max-w-7xl mx-auto space-y-8">
         
         <div>
@@ -228,7 +192,6 @@ export default function PrysmorsPortal() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Tab Switcher Control Panel */}
           <div className="lg:col-span-4 flex flex-col gap-2.5">
             {sdkMatrix.map((item) => (
               <button
@@ -241,18 +204,17 @@ export default function PrysmorsPortal() {
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <span className={activeSdk === item.id ? 'text-black' : 'text-[#00ffaa]'}>■</span>
+                  <span className={activeSdk === item.id ? 'text-black' : 'text-[#00ffaa]'}>&#9632;</span>
                   <div>
                     <p>{item.name}</p>
                     <p className={`text-[9px] font-sans normal-case tracking-normal font-medium mt-0.5 ${activeSdk === item.id ? 'text-black/70' : 'text-gray-500'}`}>{item.layer}</p>
                   </div>
                 </div>
-                <span>➔</span>
+                <span>&#10140;</span>
               </button>
             ))}
           </div>
 
-          {/* Right Telemetry Config Shell Display Block */}
           <div className="lg:col-span-8 bg-[#050806] text-white border border-[#14221a] rounded-2xl p-6 md:p-8 min-h-[380px] flex flex-col justify-between shadow-2xl relative">
             <div className="absolute top-3 right-4 font-mono text-[8px] tracking-widest text-gray-600 font-bold">ACCELERATION_ENVIRONMENT_SPEC</div>
             
@@ -275,7 +237,6 @@ export default function PrysmorsPortal() {
               </div>
             </div>
 
-            {/* Micro Parameter Core States metadata */}
             <div className="mt-6 border-t border-[#14221a] pt-4 grid grid-cols-3 gap-2 text-center font-mono text-[10px] bg-black/40 p-2.5 rounded-xl border border-[#14221a]">
               <div>
                 <span className="text-gray-600 block mb-0.5">COMPUTE_ENGINE</span>
@@ -296,7 +257,6 @@ export default function PrysmorsPortal() {
         </div>
       </section>
 
-      {/* 5. Target AWS Architecture Compute Block */}
       <section id="clusters" className="bg-[#0b110e] border-t border-[#14221a] py-16 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
@@ -325,17 +285,7 @@ export default function PrysmorsPortal() {
         </div>
       </section>
 
-      {/* 6. Production Ledger Footer */}
-      <footer className="w-full bg-[#040605] text-gray-600 font-mono text-[10px] font-bold p-6 border-t border-[#14221a] text-center md:text-left">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p>© 2026 Prysmors Decision Automation. Applications verified under NVIDIA Inception validation frameworks.</p>
-          <div className="flex items-center space-x-2 text-[#00ffaa] tracking-widest uppercase">
-            <span>PRYSMORS.COM</span>
-            <span>//</span>
-            <span className="text-white">SYS_SECURE</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   );
