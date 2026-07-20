@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
-import { TESTIMONIALS, CLIENT_LOGOS } from "../../data/content";
+import { TESTIMONIALS } from "../../data/content";
 import {
   sarahMitchellAvatar,
   danielFosterAvatar,
@@ -115,14 +115,6 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.2} className="mt-14 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 border-t border-[var(--color-border-soft)] pt-8">
-          {CLIENT_LOGOS.map((name) => (
-            <span key={name} className="font-display text-lg font-semibold tracking-tight text-[var(--color-text-dim)]">
-              {name}
-            </span>
-          ))}
         </Reveal>
       </div>
     </section>

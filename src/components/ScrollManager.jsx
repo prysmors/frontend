@@ -45,12 +45,12 @@ export default function ScrollManager() {
         let attempts = 0;
         const tryScroll = () => {
           if (scrollToHash(hash)) return;
-          if (attempts < 60) {
+          if (attempts < 120) {
             attempts++;
-            requestAnimationFrame(tryScroll);
+            setTimeout(tryScroll, 50);
           }
         };
-        requestAnimationFrame(tryScroll);
+        setTimeout(tryScroll, 80);
       }
     } else if (hashChanged) {
       if (hash) {

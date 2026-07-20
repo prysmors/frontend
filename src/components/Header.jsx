@@ -165,7 +165,7 @@ export default function Header() {
         }`}
         style={{ paddingTop: "var(--header-h)" }}
       >
-        <nav className="flex flex-col gap-1 px-6 py-8" aria-label="Mobile navigation">
+        <nav className="flex flex-1 flex-col gap-1.5 overflow-y-auto px-5 py-6 sm:px-8" aria-label="Mobile navigation">
           {NAV_LINKS.map((link, i) => {
             const isActive = active === link.href.replace("#", "");
             return (
@@ -173,7 +173,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { handleNav(link.href)(e); setMenuOpen(false); }}
-                className={`flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-3 rounded-xl px-4 py-4 text-base font-semibold transition-all duration-200 min-h-[48px] ${
                   isActive
                     ? "bg-[var(--color-mint-deep)] text-[var(--color-mint)] shadow-[0_0_20px_-8px_var(--color-mint)]"
                     : "text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]"
@@ -189,11 +189,11 @@ export default function Header() {
               </a>
             );
           })}
-          <div className="mt-6 px-4">
+          <div className="mt-4 px-3">
             <Link
               to="/product"
               onClick={() => setMenuOpen(false)}
-              className={`relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl py-2.5 pl-2.5 pr-5 text-[var(--color-text)] ${
+              className={`relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl py-3 pl-2.5 pr-5 text-[var(--color-text)] min-h-[48px] ${
                 isProductPage
                   ? "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-mint-deep)] shadow-[0_0_20px_-6px_var(--color-mint)] ring-1 ring-[var(--color-mint)]/40"
                   : "bg-gradient-to-r from-[var(--color-mint-deep)] to-[var(--color-surface)] shadow-[0_0_0_1px_var(--color-border)]"

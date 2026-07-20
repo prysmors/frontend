@@ -33,7 +33,7 @@ export default function TechnicalDiagram() {
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
             Enterprise data connects once, then flows continuously through reasoning, prediction, and
-            simulation models — accelerated on NVIDIA infrastructure — before reaching the people who decide.
+            simulation models, accelerated on high-performance neural infrastructure, before reaching the people who decide.
           </p>
         </Reveal>
 
@@ -82,7 +82,7 @@ export default function TechnicalDiagram() {
         <Reveal delay={0.15}>
           <div className="mx-auto mt-14 flex max-w-fit items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/70 px-4 py-2 font-mono text-xs text-[var(--color-text-muted)]">
             <Cpu size={14} className="text-[var(--color-mint)]" aria-hidden="true" />
-            Powered by NVIDIA SDK.
+            High-Performance Neural Architecture
           </div>
         </Reveal>
       </div>

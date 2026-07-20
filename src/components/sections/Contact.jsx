@@ -4,7 +4,6 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import Reveal from "../../hooks/useReveal";
 import { COMPANY } from "../../data/content";
-import { contactIllustration } from "../../assets";
 
 const INPUT_CLASS =
   "w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] px-4 py-3 text-sm text-[var(--color-text)] placeholder-[var(--color-text-dim)] outline-none transition-all focus:border-[var(--color-mint)] focus:ring-2 focus:ring-[var(--color-mint)]/15";
@@ -74,9 +73,9 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.4fr]">
+        <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-[1fr_1.4fr]">
           {/* Contact info */}
-          <Reveal y={20} className="flex flex-col gap-6">
+          <Reveal y={20} className="flex h-full flex-1 flex-col gap-6">
             <ContactCard
               icon={<MapPin size={18} />}
               label="Headquarters"
@@ -96,19 +95,24 @@ export default function Contact() {
               href={`mailto:${COMPANY.email}`}
             />
 
-            {/* Map placeholder */}
-            <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]" style={{ height: 200 }}>
-              <img
-                src={contactIllustration}
-                alt="Prysmors contact illustration"
+            {/* Google Map */}
+            <div className="flex-1 overflow-hidden rounded-2xl border border-[var(--color-border)]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.4715812652325!2d-122.43380202411643!3d37.77663167198491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808581762731c37f%3A0xe31f6c706ca2cfa1!2s555%20Fulton%20St%20C140%2C%20San%20Francisco%2C%20CA%2094102%2C%20USA!5e1!3m2!1sen!2slk!4v1784520462459!5m2!1sen!2slk"
+                width="600"
+                height="450"
+                style={{ border: 0, width: "100%", height: "100%" }}
+                allowFullScreen=""
                 loading="lazy"
-                className="h-full w-full object-cover opacity-60"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Prysmors headquarters location"
+                className="h-[220px] min-h-full sm:h-[280px] lg:h-auto"
               />
             </div>
           </Reveal>
 
           {/* Form */}
-          <Reveal y={20} delay={0.1}>
+          <Reveal y={20} delay={0.1} className="flex h-full flex-col">
             {succeeded ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -129,7 +133,7 @@ export default function Contact() {
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 p-8 backdrop-blur-sm"
+                className="h-full rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 p-8 backdrop-blur-sm"
                 noValidate
               >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -142,7 +146,7 @@ export default function Contact() {
                       name="name"
                       type="text"
                       required
-                      placeholder="Jane Smith"
+                      placeholder="Your full name"
                       className={INPUT_CLASS}
                     />
                   </div>
@@ -155,7 +159,7 @@ export default function Contact() {
                       name="email"
                       type="email"
                       required
-                      placeholder="jane@company.com"
+                      placeholder="you@company.com"
                       className={INPUT_CLASS}
                     />
                   </div>
@@ -169,7 +173,7 @@ export default function Contact() {
                     id="company"
                     name="company"
                     type="text"
-                    placeholder="Acme Corporation"
+                    placeholder="Company name"
                     className={INPUT_CLASS}
                   />
                 </div>
@@ -183,7 +187,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us about your organization's decision intelligence challenges..."
+                    placeholder="How can we help your organization?"
                     className={`${INPUT_CLASS} resize-none`}
                   />
                 </div>

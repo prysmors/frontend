@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, TrendingUp, Activity, Cpu, ArrowUpRight } from "lucide-react";
-import { heroVideo } from "../assets";
+import { heroVideo, heroVideoMobile } from "../assets";
 
 export default function DemoModal({ open, onClose }) {
   const closeBtnRef = useRef(null);
-  const videoRef = useRef(null);
+  const videoMobileRef = useRef(null);
+  const videoDesktopRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
@@ -22,11 +23,11 @@ export default function DemoModal({ open, onClose }) {
   }, [open, onClose]);
 
   useEffect(() => {
-    if (open && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    } else if (!open && videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+    const vids = [videoMobileRef.current, videoDesktopRef.current].filter(Boolean);
+    if (open) {
+      vids.forEach((v) => v.play().catch(() => {}));
+    } else {
+      vids.forEach((v) => { v.pause(); v.currentTime = 0; });
     }
   }, [open]);
 
@@ -37,7 +38,7 @@ export default function DemoModal({ open, onClose }) {
           role="dialog"
           aria-modal="true"
           aria-label="Prysmors platform preview"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 lg:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -59,7 +60,7 @@ export default function DemoModal({ open, onClose }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-solid,#0d1512)] shadow-[0_60px_140px_rgba(0,0,0,0.65)] lg:grid lg:grid-cols-2"
+            className="relative z-10 flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-y-auto rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-solid,#0d1512)] shadow-[0_60px_140px_rgba(0,0,0,0.65)] lg:grid lg:grid-cols-2 lg:overflow-hidden"
           >
             <button
               ref={closeBtnRef}
@@ -72,7 +73,7 @@ export default function DemoModal({ open, onClose }) {
             </button>
 
             {/* Left: hero video */}
-            <div className="relative flex items-stretch justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)]">
+            <div className="relative flex items-stretch justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#101b26_0%,#050a0d_100%)] shrink-0 lg:shrink">
               <div className="grid-overlay absolute inset-0 opacity-20" aria-hidden="true" />
               <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
                 <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#050a0d] to-transparent" />
@@ -84,15 +85,23 @@ export default function DemoModal({ open, onClose }) {
                 initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative aspect-video w-full lg:h-full lg:aspect-auto"
+                className="relative w-full aspect-video max-h-[40vh] sm:max-h-[50vh] lg:h-full lg:aspect-auto lg:max-h-none"
               >
                 <video
-                  ref={videoRef}
+                  ref={videoMobileRef}
+                  src={heroVideoMobile}
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover border-none outline-none sm:hidden"
+                />
+                <video
+                  ref={videoDesktopRef}
                   src={heroVideo}
                   loop
                   muted
                   playsInline
-                  className="h-full w-full object-cover border-none outline-none"
+                  className="hidden h-full w-full object-cover border-none outline-none sm:block"
                 />
               </motion.div>
             </div>
@@ -108,7 +117,7 @@ export default function DemoModal({ open, onClose }) {
                   See a decision get made in real time.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                  This is a simulated walkthrough of the Prysmors reasoning engine — enterprise
+                  This is a simulated walkthrough of the Prysmors reasoning engine. Enterprise
                   signals flow in, get scored for confidence, and surface as a ranked
                   recommendation for your leadership team.
                 </p>

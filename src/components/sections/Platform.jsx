@@ -30,7 +30,7 @@ export default function Platform() {
             THE DECISION <span className="text-gradient">INTELLIGENCE PIPELINE</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
-            From fragmented enterprise data to executive-ready decisions — in real time.
+            From fragmented enterprise data to executive-ready decisions, in real time.
           </p>
         </Reveal>
 

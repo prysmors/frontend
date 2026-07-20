@@ -32,20 +32,6 @@ export default function FinalCta() {
               <ArrowUpRight size={18} aria-hidden="true" />
             </motion.a>
           </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[var(--color-text-dim)]">
-            <a href="#contact" onClick={(e) => { e.preventDefault(); navigate("/#contact"); }} className="hover:text-[var(--color-mint)]">
-              Talk to Our Team
-            </a>
-            <span aria-hidden="true">·</span>
-            <a href="#" className="hover:text-[var(--color-mint)]">
-              Download Platform Overview
-            </a>
-            <span aria-hidden="true">·</span>
-            <a href="#dashboard" onClick={(e) => { e.preventDefault(); navigate("/#dashboard"); }} className="hover:text-[var(--color-mint)]">
-              Explore the Dashboard
-            </a>
-          </div>
         </Reveal>
       </div>
     </section>

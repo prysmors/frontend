@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-[76px]"
+      className="relative flex min-h-screen items-center overflow-x-hidden overflow-y-visible pt-[calc(var(--header-h)+1.5rem)]"
     >
       {/* background layers */}
       <div className="absolute inset-0 grid-overlay opacity-40" aria-hidden="true" />
@@ -28,7 +28,7 @@ export default function Hero() {
       />
       <div className="noise-layer" aria-hidden="true" />
 
-      <div className="container-px relative z-10 grid w-full grid-cols-1 items-center gap-16 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-0">
+      <div className="container-px relative z-10 grid w-full grid-cols-1 items-center gap-16 py-10 lg:grid-cols-[1.05fr_1fr] lg:py-0">
         {/* Left: copy */}
         <div>
           <motion.div
@@ -48,8 +48,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.08 }}
             className="font-display text-[13vw] leading-[0.98] font-extrabold tracking-tight text-[var(--color-text)] sm:text-6xl md:text-[4.6rem] xl:text-[5.2rem]"
           >
-            AI-Powered Decision Intelligence{" "}
-            <span className="text-gradient">for Modern Enterprises</span>
+            Decision Intelligence{" "}
+            <span className="text-gradient">Built for Enterprise</span>
           </motion.h1>
 
           <motion.p
@@ -58,10 +58,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
           >
-            Every business generates data. The challenge is turning that data into decisions that move the business forward.
-            Prysmors brings together enterprise data, AI-powered analytics, predictive forecasting, and scenario planning into one intelligent platform. Instead of spending hours reviewing reports, leadership teams gain real-time insights, anticipate future outcomes, and make informed decisions with greater confidence.
-            See what&apos;s happening today. Understand what comes next. Decide with confidence.
-
+            Unify enterprise data, predict outcomes, and simulate scenarios, all in one AI-powered platform.
+            Prysmors turns raw information into strategic decisions with confidence.
           </motion.p>
 
           <motion.div
@@ -110,26 +108,26 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="animate-float-slow absolute right-2 top-2 h-24 w-24 rounded-2xl border border-[var(--color-mint)]/30 bg-gradient-to-br from-[#27FFbf]/25 to-transparent backdrop-blur-sm sm:h-28 sm:w-28"
+            className="animate-float-slow absolute right-2 top-2 h-16 w-16 rounded-2xl border border-[var(--color-mint)]/30 bg-gradient-to-br from-[#27FFbf]/25 to-transparent backdrop-blur-sm sm:h-28 sm:w-28"
             aria-hidden="true"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="animate-float-slower absolute left-0 top-16 h-16 w-16 rounded-full border border-[#7b61ff]/40 bg-gradient-to-br from-[#7b61ff]/30 to-transparent sm:h-20 sm:w-20"
+            className="animate-float-slower absolute left-0 top-16 h-10 w-10 rounded-full border border-[#7b61ff]/40 bg-gradient-to-br from-[#7b61ff]/30 to-transparent sm:h-20 sm:w-20"
             aria-hidden="true"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="animate-spin-slow absolute bottom-24 right-10 h-14 w-14 rounded-lg border border-[#27FFbf]/40"
+            className="animate-spin-slow absolute bottom-24 right-10 h-10 w-10 rounded-lg border border-[#27FFbf]/40 sm:h-14 sm:w-14"
             style={{ background: "conic-gradient(from 90deg, rgba(39,255,191,0.2), transparent 60%)" }}
             aria-hidden="true"
           />
           <div
-            className="animate-float-slow absolute -left-4 bottom-8 h-40 w-40 rounded-full opacity-40 blur-2xl sm:h-52 sm:w-52"
+            className="animate-float-slow absolute -left-4 bottom-8 h-28 w-28 rounded-full opacity-40 blur-2xl sm:h-52 sm:w-52"
             style={{ background: "radial-gradient(circle, var(--color-mint) 0%, transparent 72%)" }}
             aria-hidden="true"
           />
@@ -168,9 +166,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="absolute inset-x-4 top-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/90 p-4 shadow-[0_30px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:inset-x-8 sm:top-20 sm:p-5"
+            className="absolute inset-x-4 top-14 flex flex-col items-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/90 p-4 pb-8 shadow-[0_30px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:inset-x-8 sm:top-20 sm:p-5 sm:pb-10 lg:pb-14"
           >
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-4 flex w-full items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
@@ -183,7 +181,7 @@ export default function Hero() {
             </div>
 
             {/* Hero graphic */}
-            <div className="relative flex items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-soft)] bg-[radial-gradient(ellipse_at_center,#0f1824_0%,#070c11_100%)] py-0">
+            <div className="relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-soft)] bg-[radial-gradient(ellipse_at_center,#0f1824_0%,#070c11_100%)] py-0">
               <img
                 src={heroGraphic}
                 alt="Prysmors decision intelligence visualization"
@@ -194,19 +192,18 @@ export default function Hero() {
             <p className="mt-3 text-center text-[11px] leading-relaxed text-[var(--color-text-dim)]">
               Real-time reasoning across enterprise data, scored and ranked for confidence.
             </p>
-          </motion.div>
 
-          {/* play badge */}
-          <motion.button
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            onClick={() => setDemoOpen(true)}
-            aria-label="Watch a preview of how the platform works"
-            className="animate-pulse-glow absolute -bottom-4 left-6 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-[var(--color-mint)] text-[#06110d] shadow-[0_0_40px_rgba(39,255,191,0.5)] sm:left-10"
-          >
-            <Play size={22} fill="#06110d" aria-hidden="true" />
-          </motion.button>
+            <motion.button
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              onClick={() => setDemoOpen(true)}
+              aria-label="Watch a preview of how the platform works"
+              className="animate-pulse-glow relative mt-5 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[var(--color-mint)] text-[#06110d] shadow-[0_0_40px_rgba(39,255,191,0.5)] sm:absolute sm:mt-0 sm:-bottom-8 lg:-bottom-24 sm:left-10 sm:h-16 sm:w-16"
+            >
+              <Play size={18} fill="#06110d" aria-hidden="true" className="sm:h-[22px] sm:w-[22px]" />
+            </motion.button>
+          </motion.div>
         </div>
       </div>
 

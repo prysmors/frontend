@@ -7,6 +7,7 @@ export { default as favicon } from "./favicon/prysmors-favicon.svg";
 // Hero
 export { default as heroGraphic } from "./hero/hero-graphic.svg";
 export { default as heroVideo } from "./videos/hero-video.mp4";
+export { default as heroVideoMobile } from "./videos/hero-video-mobile-view.mp4";
 
 // Platform Architecture (5 icons)
 export { default as dataIngestionIcon } from "./architecture/data-ingestion.svg";

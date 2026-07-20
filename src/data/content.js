@@ -3,36 +3,36 @@
 export const COMPANY = {
   name: "Prysmors",
   legalName: "Prysmors LLC",
-  founder: "Rikaz Riffered",
+  founder: "Elena Rostova",
   founderRole: "Founder & CEO",
   founded: "April 20, 2024",
   address: "555 Fulston St, Ste C140, San Francisco, CA 94102",
-  phone: "+1 315-931-1053",
-  phoneHref: "tel:+13159311053",
+  phone: "+1 318-531-1063",
+  phoneHref: "tel:+13185311063",
   email: "help@prysmors.com",
   website: "prysmors.com",
 };
 
 export const TRUST_LOGOS = [
-  "SAP", "Salesforce", "Workday", "Snowflake", "Oracle", "NetSuite", "AWS", "Azure", "ServiceNow", "HubSpot",
+  "SAP", "Salesforce", "Workday", "Snowflake", "Oracle", "NetSuite", "Stripe", "Twilio", "ServiceNow", "HubSpot",
 ];
 
 export const DATA_SOURCES = [
-  { name: "ERP Systems", connected: true },
-  { name: "CRM Platforms", connected: true },
-  { name: "Financial Systems", connected: true },
-  { name: "HR Platforms", connected: true },
-  { name: "Supply Chain Systems", connected: true },
-  { name: "Enterprise Databases", connected: true },
-  { name: "Data Warehouses", connected: true },
-  { name: "Cloud Applications", connected: false },
-  { name: "Market Intelligence APIs", connected: false },
+  { name: "ERP Systems", connected: true, throughput: 4200, latency: 12, lastSync: 2 },
+  { name: "CRM Platforms", connected: true, throughput: 1800, latency: 18, lastSync: 5 },
+  { name: "Financial Systems", connected: true, throughput: 3100, latency: 8, lastSync: 1 },
+  { name: "HR Platforms", connected: true, throughput: 890, latency: 22, lastSync: 12 },
+  { name: "Supply Chain", connected: true, throughput: 2600, latency: 15, lastSync: 3 },
+  { name: "Enterprise DBs", connected: true, throughput: 5700, latency: 6, lastSync: 1 },
+  { name: "Data Warehouses", connected: true, throughput: 8300, latency: 31, lastSync: 8 },
+  { name: "Cloud Apps", connected: false, throughput: 0, latency: 0, lastSync: 0 },
+  { name: "Market Intel APIs", connected: false, throughput: 0, latency: 0, lastSync: 0 },
 ];
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Dashboard", href: "#dashboard" },
+  { label: "Demo", href: "#dashboard" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Capabilities", href: "#capabilities" },
   { label: "Pricing", href: "#pricing" },
@@ -109,10 +109,26 @@ export const PIPELINE_STEPS = [
 ];
 
 export const HEALTH_METRICS = [
-  { label: "Active Data Sources", value: "128", suffix: "" },
-  { label: "AI Prediction Accuracy", value: "97.4", suffix: "%" },
-  { label: "GPU Utilization", value: "82", suffix: "%" },
-  { label: "Recommendation Confidence", value: "94", suffix: "%" },
+  { id: "sources", label: "Active Data Sources", base: 128, min: 125, max: 132, decimals: 0, suffix: "", trendDir: "up", trendBase: 3 },
+  { id: "accuracy", label: "AI Prediction Accuracy", base: 97.4, min: 96.5, max: 98.2, decimals: 1, suffix: "%", trendDir: "up", trendBase: 0.6 },
+  { id: "gpu", label: "GPU Utilization", base: 82, min: 74, max: 91, decimals: 0, suffix: "%", trendDir: "down", trendBase: 2.1 },
+  { id: "confidence", label: "Recommendation Confidence", base: 94, min: 91, max: 97, decimals: 0, suffix: "%", trendDir: "up", trendBase: 1.2 },
+];
+
+export const PIPELINE_STAGES = [
+  { id: "ingest", label: "Ingest", base: 26400, min: 22000, max: 31000, unit: "events/s" },
+  { id: "process", label: "Process", base: 18200, min: 15000, max: 22000, unit: "events/s" },
+  { id: "reason", label: "Reason", base: 4800, min: 3800, max: 5600, unit: "queries/s" },
+  { id: "deliver", label: "Deliver", base: 1200, min: 900, max: 1500, unit: "recs/min" },
+];
+
+export const DASHBOARD_INSIGHTS = [
+  { id: 1, type: "alert", title: "Supply chain anomaly detected", detail: "Lead times for Component X increased 34%. Recommend alternate sourcing.", time: "12s ago" },
+  { id: 2, type: "insight", title: "Revenue forecast revised upward", detail: "Q3 projections adjusted +8.2% based on CRM pipeline analysis", time: "45s ago" },
+  { id: 3, type: "success", title: "Model retraining complete", detail: "Prediction accuracy improved from 96.8% to 97.4% on financial datasets", time: "2m ago" },
+  { id: 4, type: "insight", title: "Workforce optimization opportunity", detail: "Cross-referencing HR and project data suggests 12% capacity reallocation", time: "5m ago" },
+  { id: 5, type: "alert", title: "Unusual access pattern flagged", detail: "3 failed API auth attempts from unrecognized IP range. Security notified.", time: "8m ago" },
+  { id: 6, type: "success", title: "Data sync completed", detail: "All 7 active sources synchronized. Zero data loss across 1.2M records.", time: "11m ago" },
 ];
 
 export const TESTIMONIALS = [
@@ -151,15 +167,6 @@ export const TESTIMONIALS = [
     role: "Chief Digital Officer",
     company: "Summit Enterprise Group",
   },
-];
-
-export const CLIENT_LOGOS = [
-  "Northbridge",
-  "Kestrel Mfg.",
-  "Solace Health",
-  "Vantar Retail",
-  "Ferro Logistics",
-  "Meridian Gov.",
 ];
 
 export const PRICING_TIERS = [
@@ -229,7 +236,7 @@ export const WHY_US = [
   },
   {
     id: "03",
-    title: "NVIDIA-Accelerated Compute",
+    title: "Next-Gen Neural Compute",
     desc: "GPU-accelerated inference for real-time predictive and simulation workloads.",
     icon: "zap",
   },

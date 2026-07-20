@@ -38,7 +38,7 @@ function XIcon({ size = 16 }) {
 const SOCIALS = [
   { href: "https://www.facebook.com/Prysmors/", Icon: Facebook, label: "Facebook" },
   { href: "https://x.com/Prysmors", Icon: XIcon, label: "X" },
-  { href: "https://www.pinterest.com/Prysmors/", Icon: PinterestIcon, label: "Pinterest" },
+  { href: "https://www.pinterest.com/prysmors/", Icon: PinterestIcon, label: "Pinterest" },
   { href: "https://www.youtube.com/@Prysmors", Icon: Youtube, label: "YouTube" },
   { href: "https://www.linkedin.com/company/prysmors/", Icon: Linkedin, label: "LinkedIn" },
 ];
@@ -97,7 +97,7 @@ export default function Footer() {
               <img src={logo} alt="Prysmors" className="h-14 w-auto" />
             </a>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-[var(--color-text-muted)]">
-              Enterprise Decision Intelligence Platform — transforming data into
+              Enterprise Decision Intelligence Platform, transforming data into
               strategic decisions through AI-powered analytics and simulation.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -170,7 +170,7 @@ export default function Footer() {
             &copy; {year} {COMPANY.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-[var(--color-text-dim)]">
-            Founded {COMPANY.founded} · {COMPANY.address}
+            {COMPANY.address}
           </p>
         </div>
       </div>

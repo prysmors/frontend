@@ -49,7 +49,7 @@ export default function PredictiveAnalytics() {
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg">
             Prysmors reads enterprise signal continuously and projects what
-            happens next — revenue, risk, and opportunity — before it shows
+            happens next, revenue, risk, and opportunity, before it shows
             up in a quarterly report.
           </p>
 

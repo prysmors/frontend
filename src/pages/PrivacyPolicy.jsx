@@ -244,17 +244,25 @@ export default function PrivacyPolicy() {
         </p>
         <div className="mt-4 rounded-xl border border-[var(--color-border-soft)] bg-[var(--color-surface)]/40 p-5 space-y-2">
           <p className="text-[var(--color-text)] font-semibold">Prysmors, Inc.</p>
-          <p>Privacy Team</p>
+          <p>
+            555 Fulston St, Ste C140, San Francisco, CA 94102
+          </p>
+          <p>
+            Phone:{" "}
+            <a href="tel:+13185311063" className="text-[var(--color-mint)] hover:underline">
+              +1 318-531-1063
+            </a>
+          </p>
           <p>
             Email:{" "}
-            <a href="mailto:privacy@prysmors.com" className="text-[var(--color-mint)] hover:underline">
-              privacy@prysmors.com
+            <a href="mailto:help@prysmors.com" className="text-[var(--color-mint)] hover:underline">
+              help@prysmors.com
             </a>
           </p>
           <p>
             Web:{" "}
-            <a href="/contact" className="text-[var(--color-mint)] hover:underline">
-              Contact Page
+            <a href="https://prysmors.com/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-mint)] hover:underline">
+              https://prysmors.com/
             </a>
           </p>
         </div>
