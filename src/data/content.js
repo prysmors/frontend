@@ -14,7 +14,7 @@ export const COMPANY = {
 };
 
 export const TRUST_LOGOS = [
-  "SAP", "Salesforce", "Workday", "Snowflake", "Oracle", "NetSuite", "Stripe", "Twilio", "ServiceNow", "HubSpot",
+  "Slack", "Microsoft Teams", "Jira", "Confluence", "HubSpot",
 ];
 
 export const DATA_SOURCES = [

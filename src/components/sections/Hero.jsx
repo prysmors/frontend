@@ -48,8 +48,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.08 }}
             className="font-display text-[13vw] leading-[0.98] font-extrabold tracking-tight text-[var(--color-text)] sm:text-6xl md:text-[4.6rem] xl:text-[5.2rem]"
           >
-            Decision Intelligence{" "}
-            <span className="text-gradient">Built for Enterprise</span>
+            AI-Powered{" "}
+            <span className="text-gradient">Decision Intelligence</span>
           </motion.h1>
 
           <motion.p
@@ -58,8 +58,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
           >
-            Unify enterprise data, predict outcomes, and simulate scenarios, all in one AI-powered platform.
-            Prysmors turns raw information into strategic decisions with confidence.
+            Every business generates data. The challenge is turning that data into decisions that move the business forward.
+            Prysmors brings together enterprise data, AI-powered analytics, predictive forecasting, and scenario planning into one intelligent platform. Instead of spending hours reviewing reports, leadership teams gain, anticipate future outcomes, and make informed decisions with greater confidence.
           </motion.p>
 
           <motion.div
