@@ -1,15 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-const HEADER_HEIGHT = 80;
-
 function scrollToHash(hash) {
   if (!hash) return false;
-  const el = document.querySelector(hash);
+  const id = hash.replace(/^#\/?/, "");
+  if (!id) return false;
+  const el = document.getElementById(id);
   if (!el) return false;
-  const rect = el.getBoundingClientRect();
-  const top = rect.top + window.scrollY - HEADER_HEIGHT;
-  window.scrollTo({ top, behavior: "smooth" });
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
   return true;
 }
 
@@ -42,15 +40,9 @@ export default function ScrollManager() {
     if (pathChanged) {
       window.scrollTo({ top: 0, behavior: "instant" });
       if (hash) {
-        let attempts = 0;
-        const tryScroll = () => {
-          if (scrollToHash(hash)) return;
-          if (attempts < 120) {
-            attempts++;
-            setTimeout(tryScroll, 50);
-          }
-        };
-        setTimeout(tryScroll, 80);
+        requestAnimationFrame(() => {
+          scrollToHash(hash);
+        });
       }
     } else if (hashChanged) {
       if (hash) {

@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-x-hidden overflow-y-visible pt-[calc(var(--header-h)+1.5rem)]"
+      className="relative flex min-h-screen items-center overflow-x-clip pb-28 pt-[calc(var(--header-h)+1.5rem)] md:pb-36 lg:pb-40"
     >
       {/* background layers */}
       <div className="absolute inset-0 grid-overlay opacity-40" aria-hidden="true" />
@@ -58,8 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
           >
-            Every business generates data. The challenge is turning that data into decisions that move the business forward.
-            Prysmors brings together enterprise data, AI-powered analytics, predictive forecasting, and scenario planning into one intelligent platform. Instead of spending hours reviewing reports, leadership teams gain, anticipate future outcomes, and make informed decisions with greater confidence.
+            Prysmors unifies enterprise data, AI-powered analytics, and predictive forecasting into one platform—helping teams anticipate outcomes and make faster, more confident decisions.
           </motion.p>
 
           <motion.div

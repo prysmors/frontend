@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import useActiveSection from "../hooks/useActiveSection";
 import { logo, favicon } from "../assets";
-import { forceScrollToHash, forceScrollToTop } from "./ScrollManager";
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""));
 
@@ -15,30 +14,69 @@ function BrandGlyph() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const rawActive = useActiveSection(SECTION_IDS);
+  const [rawActive, setActiveImmediate, lockNavigation, isNavigatingRef] = useActiveSection(SECTION_IDS);
   const navigate = useNavigate();
   const location = useLocation();
   const isProductPage = location.pathname === "/product";
   const active = isProductPage ? null : rawActive;
+  const mountedRef = useRef(true);
 
-  const handleNav = (href) => (e) => {
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+    const cleanHash = location.hash ? location.hash.replace(/^#\/?/, "") : "home";
+    setActiveImmediate(cleanHash);
+
+    isNavigatingRef.current = true;
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const target = document.getElementById(cleanHash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        setTimeout(() => {
+          if (mountedRef.current) isNavigatingRef.current = false;
+        }, 1000);
+      }, 60);
+    });
+  }, [location.pathname, location.hash]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleNav = useCallback((href) => (e) => {
     e.preventDefault();
-    if (location.pathname === "/") {
-      forceScrollToHash(href);
-    } else {
-      navigate("/" + href);
-    }
-  };
+    const cleanHash = href.replace(/^#\/?/, "");
 
-  const handleLogoClick = (e) => {
+    setActiveImmediate(cleanHash);
+    lockNavigation(1000);
+
+    if (location.pathname !== "/") {
+      navigate(`/#${cleanHash}`, { replace: false });
+    } else {
+      window.history.pushState(null, "", `/#${cleanHash}`);
+      const target = document.getElementById(cleanHash);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  }, [location.pathname, navigate, setActiveImmediate, lockNavigation]);
+
+  const handleLogoClick = useCallback((e) => {
     e.preventDefault();
     setMenuOpen(false);
     if (location.pathname === "/") {
-      forceScrollToTop();
+      window.history.pushState(null, "", "/");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       navigate("/");
     }
-  };
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -60,7 +98,7 @@ export default function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-2xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+            ? "border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
             : "bg-transparent"
         }`}
         style={{ height: "var(--header-h)" }}
@@ -160,12 +198,11 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col bg-[var(--color-bg)]/98 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 top-[var(--header-h)] z-50 flex flex-col overflow-y-auto bg-[var(--color-bg)]/98 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        style={{ paddingTop: "var(--header-h)" }}
       >
-        <nav className="flex flex-1 flex-col gap-1.5 overflow-y-auto px-5 py-6 sm:px-8" aria-label="Mobile navigation">
+        <nav className="flex flex-1 flex-col gap-1.5 px-5 pb-10 pt-6 sm:px-8" aria-label="Mobile navigation">
           {NAV_LINKS.map((link, i) => {
             const isActive = active === link.href.replace("#", "");
             return (

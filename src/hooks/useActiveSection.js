@@ -1,13 +1,26 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 export default function useActiveSection(ids) {
   const [active, setActive] = useState(ids[0]);
+  const isNavigatingRef = useRef(false);
   const seen = useRef(new Set());
+
+  const lockNavigation = useCallback((duration = 1200) => {
+    isNavigatingRef.current = true;
+    setTimeout(() => { isNavigatingRef.current = false; }, duration);
+  }, []);
+
+  const setActiveImmediate = useCallback((id) => {
+    isNavigatingRef.current = true;
+    setActive(id);
+    setTimeout(() => { isNavigatingRef.current = false; }, 1200);
+  }, []);
 
   useEffect(() => {
     seen.current = new Set();
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isNavigatingRef.current) return;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             seen.current.add(entry.target.id);
@@ -20,7 +33,7 @@ export default function useActiveSection(ids) {
           if (first) setActive(first);
         }
       },
-      { rootMargin: "-80px 0px -40% 0px", threshold: 0 }
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0.1 }
     );
 
     ids.forEach((id) => {
@@ -31,5 +44,5 @@ export default function useActiveSection(ids) {
     return () => observer.disconnect();
   }, [ids]);
 
-  return active;
+  return [active, setActiveImmediate, lockNavigation, isNavigatingRef];
 }

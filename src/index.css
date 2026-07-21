@@ -303,6 +303,8 @@ p { margin: 0; }
   pointer-events: none;
   background: var(--color-bg);
   opacity: var(--site-bg-opacity);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .site-bg__wash {
@@ -374,5 +376,5 @@ p { margin: 0; }
 }
 
 section[id] {
-  scroll-margin-top: var(--header-h);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
 }

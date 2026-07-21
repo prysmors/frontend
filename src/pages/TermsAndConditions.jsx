@@ -269,8 +269,8 @@ export default function TermsAndConditions() {
           </p>
           <p>
             Phone:{" "}
-            <a href="tel:+13185311063" className="text-[var(--color-mint)] hover:underline">
-              +1 318-531-1063
+            <a href="tel:+13159311053" className="text-[var(--color-mint)] hover:underline">
+              +1 315-931-1053
             </a>
           </p>
           <p>

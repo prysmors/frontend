@@ -7,8 +7,8 @@ export const COMPANY = {
   founderRole: "Founder & CEO",
   founded: "April 20, 2024",
   address: "555 Fulston St, Ste C140, San Francisco, CA 94102",
-  phone: "+1 318-531-1063",
-  phoneHref: "tel:+13185311063",
+  phone: "+1 315-931-1053",
+  phoneHref: "tel:+13159311053",
   email: "help@prysmors.com",
   website: "prysmors.com",
 };

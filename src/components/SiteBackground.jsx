@@ -1,20 +1,9 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Fixed, full-viewport ambient background rendered once at the app root.
- * A quiet, flowing field of particles arranged in wave-like folds (inspired
- * by the reference mood: dark blue field, gentle cyan wave crests) rendered
- * on a single canvas for performance. The whole plane gently tilts in 3D
- * as the cursor moves, like a floating surface reacting to the user,
- * settling back to rest when the mouse leaves. Opacity is kept low so it
- * never competes with foreground content — tune DOT_ALPHA / CSS opacity
- * below to go quieter still.
- */
-
 const COLS = 70;
 const ROWS = 34;
-const DOT_ALPHA = 0.55; // overall particle opacity multiplier
-const MAX_TILT = 6; // degrees of 3D tilt at full mouse travel
+const DOT_ALPHA = 0.55;
+const MAX_TILT = 6;
 
 export default function SiteBackground() {
   const canvasRef = useRef(null);
@@ -42,15 +31,18 @@ export default function SiteBackground() {
     resize();
     window.addEventListener("resize", resize);
 
+    let mouseTimer = null;
     const onMouseMove = (e) => {
-      mouse.current.nx = (e.clientX / window.innerWidth) * 2 - 1; // -1..1
+      if (mouseTimer) return;
+      mouseTimer = setTimeout(() => { mouseTimer = null; }, 16);
+      mouse.current.nx = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.ny = (e.clientY / window.innerHeight) * 2 - 1;
     };
     const onMouseLeave = () => {
       mouse.current.nx = 0;
       mouse.current.ny = 0;
     };
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("mouseout", onMouseLeave);
 
     const prefersReduced = window.matchMedia(
@@ -60,6 +52,11 @@ export default function SiteBackground() {
     let t = 0;
 
     const draw = () => {
+      if (document.hidden) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       const spacingX = width / (COLS - 1);
@@ -70,9 +67,6 @@ export default function SiteBackground() {
           const x = col * spacingX;
           const yBase = row * spacingY;
 
-          // Layered sine waves at different frequencies/phases per axis so
-          // the field folds diagonally rather than pulsing uniformly —
-          // reads as a slow-moving surface rather than a static grid.
           const wave =
             Math.sin(col * 0.18 + row * 0.09 + t) * 14 +
             Math.sin(col * 0.07 - row * 0.15 + t * 0.6) * 10 +
@@ -80,14 +74,9 @@ export default function SiteBackground() {
 
           const y = yBase + wave;
 
-          // Normalized height drives brightness — crest = brighter, trough = dimmer,
-          // matching the "glowing wave fold" look of the reference image.
-          const norm = (wave + 30) / 60; // roughly 0..1
+          const norm = (wave + 30) / 60;
           const clamped = Math.max(0, Math.min(1, norm));
 
-          // Color: deep indigo/violet base -> soft blue-cyan crest.
-          // Green channel deliberately restrained vs. the brand mint accent
-          // so the field reads as blue, not green.
           const r = 70 + clamped * 30;
           const g = 110 + clamped * 90;
           const b = 200 + clamped * 55;
@@ -106,9 +95,6 @@ export default function SiteBackground() {
         t += 0.006;
       }
 
-      // Smoothly ease current tilt toward the mouse-driven target for a
-      // natural, slightly delayed "floating plane" feel rather than
-      // snapping straight to the cursor.
       tilt.current.tx = mouse.current.ny * -MAX_TILT;
       tilt.current.ty = mouse.current.nx * MAX_TILT;
       tilt.current.x += (tilt.current.tx - tilt.current.x) * 0.04;
