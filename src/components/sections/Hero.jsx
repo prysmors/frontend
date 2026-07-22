@@ -58,7 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.18 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
           >
-            Prysmors unifies enterprise data, AI-powered analytics, and predictive forecasting into one platform—helping teams anticipate outcomes and make faster, more confident decisions.
+            Prysmors unifies enterprise data, AI-powered analytics, and predictive forecasting into one platform, helping teams anticipate outcomes and make faster, more confident decisions.
           </motion.p>
 
           <motion.div
